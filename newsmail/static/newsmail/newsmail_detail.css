@@ -1,0 +1,125 @@
+.niktin-main-content {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    width: 90%;
+    margin: 100px 5%;
+    border-radius: 2px;
+    box-shadow: 0 0 4px #ccc;
+    z-index: 100;
+    overflow: scroll;
+    background-repeat:repeat;
+}
+
+.niktin-newsmail-heading {
+    font-size: 4em;
+    text-align: center;
+    color: #91121B;
+    line-height: 0.9em;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.niktin-blog {
+    padding: 70px 0;
+    border-radius: 2px;
+    width: 80%;
+    margin: 0 10%;
+}
+
+.niktin-main-title {
+    text-align: center;
+
+    font-size: 1.4em;
+    font-style: italic;
+    margin: 2px 0;
+    color: #666;
+    font-weight: 500;
+    display: block;
+    word-wrap: break-word;
+}
+
+.niktin-newsmail-divider-big {
+    width: 90%;
+    height: 2px;
+    background: #f4f4f4;
+    margin: 40px 5% 2px 5%;
+}
+
+.niktin-newsmail-divider-small {
+    width: 70%;
+    height: 2px;
+    background: #f4f4f4;
+    margin: 2px 15% 40px 15%;
+}
+
+.niktin-newsmail-image {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.niktin-newsmail-image > img {
+    position: absolute;
+    margin: auto;
+    display: block;
+    min-height: 300px;
+
+    height: auto;
+    width: 100%;
+
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+}
+
+.niktin-main-credentials {
+    color: #666;
+    font-size: 0.9em;
+    overflow: hidden;
+    border-bottom: 2px solid #f4f4f4;
+}
+
+.niktin-main-credentials-author {
+    float: left;
+    margin-bottom: 5px;
+}
+
+.niktin-main-credentials-date {
+    float: right;
+    margin-bottom: 5px;
+}
+
+.niktin-main-tags {
+    color: #069;
+    font-size: 0.85em;
+    margin-bottom: 5px;
+    height: 2em;
+    overflow: hidden;
+}
+
+.niktin-main-tags > ul {
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 0;
+}
+
+.niktin-main-tags > ul > li {
+    display: inline;
+}
+
+.niktin-main-tags-divider {
+    color: #999;
+    margin: 0 5px;
+}
+
+.niktin-main-description {
+    margin: 40px 0;
+}
+
+.niktin-newsmail-credentials-author {
+    font-size: 1em;
+    font-style: italic;
+    color: #999;
+}

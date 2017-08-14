@@ -1,0 +1,47 @@
+{% extends 'home/index.html' %}
+{% load staticfiles %}
+
+{% block title %}Adurcup Blog : {{ blog.title }}{% endblock %}
+
+{% block load_files %}
+    <link href="{% static 'blog/blog_detail.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block nav_active %}
+    <li><a href="{% url 'home:home' %}">Home</a></li>
+    <li><a href="{% url 'blog:blogs' %}">Blogs</a></li>
+    <li><a href="{% url 'delight:delights' %}">Delights</a></li>
+    <li><a href="{% url 'newsmail:newsmails' %}">NewsMails</a></li>
+    <li><a href="{% url 'video:videos' %}">Videos</a></li>
+{% endblock %}
+
+{% block main_body %}
+    <div class="jumbotron niktin-jumbotron">
+        {% if blog.img_url == '#' %}
+            <img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+        {% else %}
+            <img src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}">
+        {% endif %}
+        <div class="niktin-jumbotron-mask"></div>
+    </div>
+
+    <div class="niktin-main-content">
+        <!-- Example row of columns -->
+        <div class="niktin-blog">
+            <h2 class="niktin-main-title">{{ blog.title }}</h2>
+            <div class="niktin-main-credentials">
+                <p class="niktin-main-credentials-author">{{ blog.author }}</p>
+                <p class="niktin-main-credentials-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
+            </div>
+            <div class="niktin-main-tags">
+                <ul>
+                    {% for tag in blog.blogtag_set.all %}
+                        <li>{{ tag.tag }}</li>
+                        <li class="niktin-blog-tags-divider">/</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="niktin-main-description">{{ blog.content|safe }}</div>
+        </div>
+    </div>
+{% endblock %}

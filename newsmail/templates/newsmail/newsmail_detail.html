@@ -1,0 +1,44 @@
+{% extends 'home/index.html' %}
+{% load staticfiles %}
+
+{% block title %}Adurcup Newsmail : {{ newsmail.title }}{% endblock %}
+
+{% block load_files %}
+    <link href="{% static 'newsmail/newsmail_detail.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block nav_active %}
+    <li><a href="{% url 'home:home' %}">Home</a></li>
+    <li><a href="{% url 'blog:blogs' %}">Blogs</a></li>
+    <li><a href="{% url 'delight:delights' %}">Delights</a></li>
+    <li><a href="{% url 'newsmail:newsmails' %}">NewsMails</a></li>
+    <li><a href="{% url 'video:videos' %}">Videos</a></li>
+{% endblock %}
+
+{% block main_body %}
+    <div class="niktin-main-content" style="background: url({% static 'home/images/snow.png' %})">
+        <!-- Example row of columns -->
+        <div class="niktin-blog">
+            <p class="niktin-newsmail-heading">ADURCUP NEWSMAIL</p>
+            <h2 class="niktin-main-title">{{ newsmail.title }}</h2>
+            <h2 class="niktin-main-title">{{ newsmail.created_at|date:"d-M-o" }}</h2>
+            <div class="niktin-newsmail-divider-big"></div>
+            <div class="niktin-newsmail-divider-small"></div>
+            {% if newsmail.img_url != '#' %}
+                <div class="niktin-newsmail-image">
+                    <img src="{{ newsmail.img_url }}">
+                </div>
+            {% endif %}
+            <div class="niktin-main-description">{{ newsmail.content|safe }}</div>
+            <div class="niktin-main-tags">
+                <ul>
+                    {% for tag in newsmail.newsmailtag_set.all %}
+                        <li>{{ tag.tag }}</li>
+                        <li class="niktin-main-tags-divider">|</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="niktin-newsmail-credentials-author">Content prepared by {{ newsmail.author }}</div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends 'home/index.html' %}
+{% load staticfiles %}
+
+{% block load_files %}
+    <link href="{% static 'home/home.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main_body %}
+    <div class="jumbotron niktin-jumbotron">
+        {% if welcome.img_url == '#' %}
+            <img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+        {% else %}
+            <img src="{{ welcome.img_url }}" alt="{{ welcome.img_alt_tag }}">
+        {% endif %}
+        <div class="row niktin-jumbotron-content">
+            <div class="niktin-intro-title">{{ welcome.title }}</div>
+            <div class="niktin-intro-description">{{ welcome.content }}</div>
+        </div>
+    </div>
+
+    <div class="container niktin-quote-container">
+        <div class="niktin-quote-content"><span> “ </span>{{ quote.quote }}<span> ” </span></div>
+        {% if quote.author != '#' %}
+            <div class="niktin-quote-author">{{ quote.author }}</div>
+        {% endif %}
+    </div>
+
+    <div class="niktin-main-content">
+        <div class="col-md-8">
+            <div class="row niktin-main">
+                <div class="niktin-main-heading">LATEST BLOGS</div>
+
+                {% for blog in blogs %}
+                    <a href="{% url 'blog:blog_detail' blog.id %}">
+                        <div class="col-md-6 col-sm-6 niktin-blog">
+                            <div class="niktin-blog-image">
+                                {% if blog.img_url == '#' %}
+                                    <img src="{% static 'home/images/bg.jpg' %}"  alt="Plastic Packaging">
+                                {% else %}
+                                    <img src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}">
+                                {% endif %}
+                            </div>
+                            <h2 class="niktin-blog-title">{{ blog.title }}</h2>
+                            <div class="niktin-blog-credentials">
+                                <p class="niktin-blog-credentials-author">{{ blog.author }}</p>
+                                <p class="niktin-blog-credentials-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
+                            </div>
+                            <div class="niktin-blog-tags">
+                                <ul>
+                                    {% for tag in blog.blogtag_set.all %}
+                                        <li>{{ tag.tag }}</li>
+                                        <li class="niktin-blog-tags-divider">/</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% if blog.summary == '#' %}
+                                <div class="niktin-blog-description">{{ blog.content|safe }}</div>
+                            {% else %}
+                                <div class="niktin-blog-description">{{ blog.summary }}</div>
+                            {% endif %}
+                        </div>
+                    </a>
+                {% endfor %}
+
+                {% if blog_exceed %}
+                    <a href="{% url 'blog:blogs' %}">
+                        <div class="col-md-12 col-sm-12 col-xs-12 niktin-button-viewall">
+                            <button type="button" class="btn btn-default">VIEW ALL BLOGS</button>
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="row niktin-main">
+                <div class="niktin-main-heading">LATEST VIDEOS</div>
+
+                {% for video in videos %}
+                    <div class="col-md-6 col-sm-6 niktin-video">
+                        <div class="niktin-video-frame">
+                            {{ video.video_embed_url|safe }}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if videos_exceed %}
+                    <a href="{% url 'video:videos' %}">
+                        <div class="col-md-12 col-sm-12 col-xs-12 niktin-button-viewall">
+                            <button type="button" class="btn btn-default" href="">VIEW ALL VIDEOS</button>
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="col-md-12 col-sm-6 niktin-main">
+                <div class="niktin-main-heading">SUBSCRIBE TO ADURCUP</div>
+                <form class="input-group niktin-subscribe" action="{% url 'subscribe' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="email" class="form-control" placeholder="youremail@domain.com" name="email" required>
+                    <span class="input-group-btn">
+						<button class="btn btn-default niktin-subscribe-button" type="submit" value="SUBSCRIBE">SUBSCRIBE</button>
+					</span>
+                </form>
+                <div class="col-md-12 subscribe-success-message">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-6 niktin-main">
+                <div class="niktin-main-heading">CONNECT WITH US</div>
+                <ul class="col-md-12 niktin-social">
+                    <li><a href="https://www.adurcup.com/" target="_blank"><img
+                            src="{% static 'home/images/www.png' %}"></a></li>
+                    <li><a href="https://www.facebook.com/adurcup.care/" target="_blank"><img
+                            src="{% static 'home/images/Facebook.png' %}"></a></li>
+                    <li><a href="https://twitter.com/adurcup" target="_blank"><img
+                            src="{% static 'home/images/Twitter.png' %}"></a></li>
+                    <li><a href="https://www.linkedin.com/company/adcount-technologies-pvt-ltd" target="_blank"><img
+                            src="{% static 'home/images/Linked-in.png' %}"></a></li>
+                    <li><a href="https://www.instagram.com/adurcup/" target="_blank"><img
+                            src="{% static 'home/images/Instgram.png' %}"></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCrbAbIJJ7FSFSUPhURBDtAQ" target="_blank"><img
+                            src="{% static 'home/images/YouTube.png' %}"></a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-12 col-sm-12 niktin-main">
+                <div class="niktin-main-heading">Restaurant Delights</div>
+
+                {% for delight in delights %}
+                    <div class="col-md-12 col-sm-6 col-xs-12  niktin-side hover-disable">
+                        <div class="col-md-12 niktin-side-delight">
+                            <p class="niktin-side-delight-number">{{ delight.number }}</p>
+                            <p class="niktin-side-delight-content">{{ delight.content }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if delight_exceed %}
+                    <a href="{% url 'delight:delights' %}">
+                        <div class="col-md-12 col-sm-12 col-xs-12 niktin-button-viewall">
+                            <button type="button" class="btn btn-default">VIEW ALL DELIGHTS</button>
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
+
+            <div class="col-md-12 col-sm-12 niktin-main">
+                <div class="niktin-main-heading">Adurcup Newsmails</div>
+
+                {% for newsmail in newsmails %}
+                    <a href="{% url 'newsmail:newsmail_detail' newsmail.id %}">
+                        <div class="col-md-12 col-sm-6 col-xs-12 niktin-side">
+                            <div class="col-md-4 col-xs-3 niktin-side-newsmail">
+                                {% if newsmail.img_url == '#' %}
+                                    <img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+                                {% else %}
+                                    <img src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
+                                {% endif %}
+                                <div class="niktin-side-newsmail-mask"></div>
+                                <div class="niktin-side-newsmail-inline">
+                                    <div class="niktin-side-newsmail-wrap">
+                                        <h3>{{ newsmail.title }}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+
+                {% if newsmail_exceed %}
+                    <a href="{% url 'newsmail:newsmails' %}">
+                        <div class="col-md-12 col-sm-12 col-xs-12 niktin-button-viewall">
+                            <button type="button" class="btn btn-default">VIEW ALL NEWSMAILS</button>
+                        </div>
+                    </a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load staticfiles %}
+    <link rel="icon" href="{% static 'home/images/adurcup_fav.png' %}">
+
+    {% block load_meta_files %}
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="robots" content=""/>
+        <meta name="author" content="Nitin Prakash">
+    {% endblock %}
+
+    <title>{% block title %}Adurcup Blog : Educating Restaurants{% endblock %}</title>
+
+    {% load staticfiles %}
+    <link href="{% static 'home/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'home/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+    <link href="{% static 'home/main.css' %}" rel="stylesheet">
+    {% block load_files %}
+    {% endblock %}
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand niktin-brand" href="{% url 'home:home' %}">Adurcup Blog</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                {% block nav_active %}
+                    <li class="active"><a href="{% url 'home:home' %}">Home</a></li>
+                    <li><a href="{% url 'blog:blogs' %}">Blogs</a></li>
+                    <li><a href="{% url 'delight:delights' %}">Delights</a></li>
+                    <li><a href="{% url 'newsmail:newsmails' %}">NewsMails</a></li>
+                    <li><a href="{% url 'video:videos' %}">Videos</a></li>
+                {% endblock %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block main_body %}
+{% endblock %}
+
+<div class="panel-footer text-center small niktin-footer">Copyright 2017. Adcount Technologies Private Limited.</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{% static 'home/jquery.min.js' %}"><\/script>')</script>
+<script src="{% static 'home/bootstrap.min.js' %}"></script>
+<script src="{% static 'home/ie10-viewport-bug-workaround.js' %}"></script>
+</body>
+</html>
