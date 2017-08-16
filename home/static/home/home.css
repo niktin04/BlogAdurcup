@@ -11,6 +11,7 @@
     display: block;
 
     height: auto;
+    min-height: 300px;
     width: 100%;
 
     top: -9999px;
@@ -359,22 +360,6 @@
     background: rgba(0, 0, 0, 0.4);
 }
 
-.niktin-side-newsmail > h3 {
-    color: #fff;
-    position: absolute;
-    display: table-cell;
-    margin: auto;
-    vertical-align: middle;
-
-    height: 120px;
-    width: 100%;
-
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-}
-
 .niktin-side-newsmail-inline {
     display: inline-block;
     width: 100%;
@@ -391,13 +376,13 @@
 }
 
 .niktin-side-newsmail-wrap > h3 {
+    font-family: 'Lobster', cursive;
     display: table-cell;
     vertical-align: middle;
 
     font-size: 1.2em;
     color: #fff;
     text-align: center;
-    text-transform: uppercase;
 }
 
 .niktin-social {

@@ -21,7 +21,7 @@
         <div class="niktin-blog">
             <p class="niktin-newsmail-heading">ADURCUP NEWSMAIL</p>
             <h2 class="niktin-main-title">{{ newsmail.title }}</h2>
-            <h2 class="niktin-main-title">{{ newsmail.created_at|date:"d-M-o" }}</h2>
+            <p class="niktin-main-subtitle">{{ newsmail.created_at|date:"l" }}, {{ newsmail.created_at|date:"d-M-o" }}</p>
             <div class="niktin-newsmail-divider-big"></div>
             <div class="niktin-newsmail-divider-small"></div>
             {% if newsmail.img_url != '#' %}
