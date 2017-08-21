@@ -24,7 +24,7 @@ SECRET_KEY = '5-^%3#svyow0axen12irv_x)0gz1)lw-hrn56ck6a(im@+v@%!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['52.66.147.79']
+ALLOWED_HOSTS = ['52.66.147.79', 'blog.adurcup.com', '0.0.0.0']
 
 # Application definition
 
