@@ -1,5 +1,6 @@
 {% extends 'home/index.html' %}
 {% load staticfiles %}
+{% load social_share %}
 
 {% block title %}Adurcup Blog : {{ blog.title }}{% endblock %}
 
@@ -46,6 +47,14 @@
                     </ul>
                 </div>
                 <div itemprop="articleBody" class="niktin-main-description">{{ blog.content|safe }}</div>
+            </div>
+            <div class="social-share">
+                <p>Share on</p>
+                <ul>
+                    <li>{% post_to_facebook request.path 'Facebook' %}</li>
+                    <li>{% post_to_twitter blog.title request.path 'Twitter' %}</li>
+                    <li>{% post_to_linkedin blog.title request.path 'LinkedIn' %}</li>
+                </ul>
             </div>
         </div>
     </div>

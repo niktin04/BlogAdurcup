@@ -1,101 +1,123 @@
 .niktin-jumbotron {
-	position: relative;
-	height: 300px;
-	overflow: hidden;
-	padding: 0;
-	margin: 0;
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
 }
 
 .niktin-jumbotron > img {
-	position: absolute;
-	margin: auto;
-	display: block;
+    position: absolute;
+    margin: auto;
+    display: block;
 
-	min-height: 300px;
-	height: auto;
-	width: 100%;
+    min-height: 300px;
+    height: auto;
+    width: 100%;
 
-	top: -9999px;
-	bottom: -9999px;
-	left: -9999px;
-	right: -9999px;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
 }
 
 .niktin-jumbotron-mask {
-	width: 100%;
-	height: 300px;
-	position: absolute;
-	background: rgba(0, 0, 0, 0.28);
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.28);
 }
 
 .niktin-main-content {
-	position: relative;
-	background: #fff;
-	top: -100px;
-	width: 90%;
-	margin: 0 5%;
-	border-radius: 2px;
-	box-shadow: 0 0 4px #ccc;
-	z-index: 100;
-	overflow: scroll;
+    position: relative;
+    background: #fff;
+    top: -100px;
+    width: 90%;
+    margin: 0 5%;
+    border-radius: 2px;
+    box-shadow: 0 0 4px #ccc;
+    z-index: 100;
+    overflow: scroll;
 }
 
 .niktin-blog {
-	padding: 70px 0;
-	border-radius: 2px;
-	width: 80%;
-	margin: 0 10%;
+    padding: 70px 0;
+    border-radius: 2px;
+    width: 80%;
+    margin: 0 10%;
 }
 
 .niktin-main-title {
-	font-size: 2em;
-	margin: 10px 0;
-	color: #000;
-	font-weight: 500;
-	display: block;
-	word-wrap: break-word;
+    font-size: 2em;
+    margin: 10px 0;
+    color: #000;
+    font-weight: 500;
+    display: block;
+    word-wrap: break-word;
 }
 
 .niktin-main-credentials {
-	color: #666;
-	font-size: 0.9em;
-	overflow: hidden;
-	border-bottom: 2px solid #f4f4f4;
+    color: #666;
+    font-size: 0.9em;
+    overflow: hidden;
+    border-bottom: 2px solid #f4f4f4;
 }
 
 .niktin-main-credentials-author {
-	float: left;
-	margin-bottom: 5px;
+    float: left;
+    margin-bottom: 5px;
 }
 
 .niktin-main-credentials-date {
-	float: right;
-	margin-bottom: 5px;
+    float: right;
+    margin-bottom: 5px;
 }
 
 .niktin-main-tags {
-	color: #069;
-	font-size: 0.85em;
-	margin-bottom: 5px;
-	height: 2em;
-	overflow: hidden;
+    color: #069;
+    font-size: 0.85em;
+    margin-bottom: 5px;
+    height: 2em;
+    overflow: hidden;
 }
 
 .niktin-main-tags > ul {
-	list-style-type: none;
-	margin: 5px 0;
-	padding: 0;
+    list-style-type: none;
+    margin: 5px 0;
+    padding: 0;
 }
 
 .niktin-main-tags > ul > li {
-	display: inline;
+    display: inline;
 }
 
 .niktin-main-tags-divider {
-	color: #999;
-	margin: 0 5px;
+    color: #999;
+    margin: 0 5px;
 }
 
 .niktin-main-description {
-	margin: 40px 0;
+    margin: 40px 0;
+}
+
+.social-share {
+    padding: 10px;
+    width: 100%;
+}
+
+.social-share > p {
+    margin: 0 0 0 5px;
+    padding: 0;
+}
+
+.social-share > ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.social-share > ul > li  {
+    display: inline;
+    width: 28px;
+    height: 28px;
+    overflow: hidden;
 }

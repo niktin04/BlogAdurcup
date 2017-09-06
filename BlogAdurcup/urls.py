@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 import home.views as home_views
+from django.http import HttpResponse
 
 app_name = 'BlogAdurcup'
 
@@ -30,4 +31,8 @@ urlpatterns = [
     url(r'^delights/', include('delight.urls')),
     url(r'^newsmails/', include('newsmail.urls')),
     url(r'^videos/', include('video.urls')),
+
+    # ROBOTS.TXT FILE CONFIG TO ALLOW ALL CRAWLERS AND ALL PAGES
+    url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"),
+        name="robots_file")
 ]

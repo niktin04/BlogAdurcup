@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5-^%3#svyow0axen12irv_x)0gz1)lw-hrn56ck6a(im@+v@%!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['52.66.147.79', 'blog.adurcup.com', '0.0.0.0']
+ALLOWED_HOSTS = ['52.66.147.79', 'blog.adurcup.com', '0.0.0.0', '127.0.0.1']
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'video.apps.VideoConfig',
     'ckeditor',
     'bootstrap_pagination',
+    'django_social_share',
 ]
 
 MIDDLEWARE = [
