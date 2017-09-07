@@ -1,8 +1,9 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render, get_object_or_404
-from .models import Blog
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Blog, Comment
 from delight.models import Delight
 from newsmail.models import NewsMail
+from django.contrib import messages
 
 
 # Create your views here.
@@ -41,3 +42,19 @@ def blog_detail(request, blog_id):
         'blog': blog,
     }
     return render(request, 'blog/blog_detail.html', context)
+
+
+def comment(request, blog_id):
+    blog = get_object_or_404(Blog, id=blog_id)
+    message = request.POST['message']
+    name = request.POST['name']
+    email = request.POST['email']
+
+    if len(email) and len(name) and len(message):
+        comment_obj = Comment(blog=blog, comment=message, name=name, email=email)
+        comment_obj.save()
+        messages.success(request, 'Comment added successfully.')
+    else:
+        messages.info(request, 'Oops! Some error occurred while adding your comment.')
+
+    return redirect(request.META.get('HTTP_REFERER') + '#comments-section')

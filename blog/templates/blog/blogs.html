@@ -29,10 +29,10 @@
                                 <div class="col-md-12 col-sm-12 niktin-blog">
                                     <div class="col-md-4 col-sm-4 niktin-blog-image">
                                         {% if blog.img_url == '#' %}
-                                            <img itemprop="image" src="{% static 'home/images/bg.jpg' %}"
+                                            <img itemprop="image" class="lazy" data-src="{% static 'home/images/bg.jpg' %}"
                                                  alt="Plastic Packaging">
                                         {% else %}
-                                            <img itemprop="image" src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}">
+                                            <img itemprop="image" class="lazy" data-src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}">
                                         {% endif %}
                                     </div>
                                     <div class="col-md-8 col-sm-8 niktin-blog-division">
@@ -49,7 +49,7 @@
                                             <ul>
                                                 {% for tag in blog.blogtag_set.all %}
                                                     <li itemprop="articleSection">{{ tag.tag }}</li>
-                                                    <li class="niktin-blog-tags-divider"> / </li>
+                                                    <li class="niktin-blog-tags-divider"> /</li>
                                                 {% endfor %}
                                             </ul>
                                         </div>
@@ -73,10 +73,10 @@
                             <ul class="pager">
                                 {% if blogs.has_previous %}
                                     <li class="previous"><a href="?page={{ blogs.previous_page_number }}"><span
-                                            aria-hidden="true">&larr;</span> Older</a></li>
+                                            aria-hidden="true">&larr;</span> Newer</a></li>
                                 {% else %}
                                     <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span>
-                                        Older</a>
+                                        Newer</a>
                                     </li>
                                 {% endif %}
 
@@ -85,11 +85,11 @@
                         </span></li>
 
                                 {% if blogs.has_next %}
-                                    <li class="next"><a href="?page={{ blogs.next_page_number }}">Newer <span
+                                    <li class="next"><a href="?page={{ blogs.next_page_number }}">Older <span
                                             aria-hidden="true">&rarr;</span></a></li>
                                 {% else %}
                                     <li class="next disabled"><a
-                                            href="#">Newer <span
+                                            href="#">Older <span
                                             aria-hidden="true">&rarr;</span></a></li>
                                 {% endif %}
                             </ul>
@@ -102,7 +102,7 @@
 
         <div class="col-md-4">
 
-            <div class="col-md-12 col-sm-6 niktin-main">
+            <div class="col-md-12 col-sm-6 niktin-main" id="subscribe">
                 <div class="niktin-main-heading">SUBSCRIBE TO ADURCUP</div>
                 <form class="input-group niktin-subscribe" action="{% url 'subscribe' %}" method="POST">
                     {% csrf_token %}
@@ -167,9 +167,9 @@
                         <div class="col-md-12 col-sm-6 col-xs-12 niktin-side">
                             <div class="col-md-4 col-xs-3 niktin-side-newsmail">
                                 {% if newsmail.img_url == '#' %}
-                                    <img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+                                    <img class="lazy" data-src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
                                 {% else %}
-                                    <img src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
+                                    <img class="lazy" data-src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
                                 {% endif %}
                                 <div class="niktin-side-newsmail-mask"></div>
                                 <div class="niktin-side-newsmail-inline">

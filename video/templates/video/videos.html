@@ -34,7 +34,7 @@
 
         <div class="col-md-4">
 
-            <div class="col-md-12 col-sm-6 niktin-main">
+            <div class="col-md-12 col-sm-6 niktin-main" id="subscribe">
                 <div class="niktin-main-heading">SUBSCRIBE TO ADURCUP</div>
                 <form class="input-group niktin-subscribe" action="{% url 'subscribe' %}" method="POST">
                     {% csrf_token %}
@@ -99,9 +99,9 @@
                         <div class="col-md-12 col-sm-6 col-xs-12 niktin-side">
                             <div class="col-md-4 col-xs-3 niktin-side-newsmail">
                                 {% if newsmail.img_url == '#' %}
-                                    <img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+                                    <img class="lazy" data-src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
                                 {% else %}
-                                    <img src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
+                                    <img class="lazy" data-src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
                                 {% endif %}
                                 <div class="niktin-side-newsmail-mask"></div>
                                 <div class="niktin-side-newsmail-inline">

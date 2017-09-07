@@ -20,9 +20,9 @@
     <div itemscope itemtype="http://schema.org/Article">
         <div class="jumbotron niktin-jumbotron">
             {% if blog.img_url == '#' %}
-                <img itemprop="image" src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+                <img itemprop="image" class="lazy" data-src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
             {% else %}
-                <img itemprop="image" src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}">
+                <img itemprop="image" class="lazy" data-src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}">
             {% endif %}
             <div class="niktin-jumbotron-mask"></div>
         </div>
@@ -58,5 +58,52 @@
                 </ul>
             </div>
         </div>
+
+        <div class="comment-box" id="comments-section">
+            <div class="comment-box-main">
+                <h6>Comments Section</h6>
+                <form class="input-group niktin-comment" action="{% url 'blog:blog_comment' blog.id %}" method="POST"
+                      id="comment_form">
+                    {% csrf_token %}
+                    <textarea name="message" form="comment_form" placeholder="Enter your comment here"></textarea>
+                    <div class="comment-box-bottom">
+                        <div class="col-sm-5 col-xs-12 comment-box-bottom-outer">
+                            <input placeholder="Name" name="name"
+                                   required>
+                        </div>
+                        <div class="col-sm-5 col-xs-12 comment-box-bottom-outer">
+                            <input type="email" placeholder="Email" name="email"
+                                   required>
+                        </div>
+                        <button class="col-md-2 col-sm-2 col-xs-12 niktin-comment-button" type="submit" value="SUBMIT">
+                            SUBMIT
+                        </button>
+                    </div>
+                </form>
+
+                {% if messages %}
+                    <div class="alert alert-warning" role="alert">
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if blog.comment_set.all %}
+            <div class="comments-showcase-box">
+                <div class="comments-showcase-box-main">
+                    {% for comment in blog.comment_set.all reversed %}
+                        <div class="col-xs-12">
+                            <h5>{{ comment.name }}</h5>
+                            <p>{{ comment.created_at|date:"d M o \a\t H:i" }}</p>
+                        </div>
+                        <p>{{ comment.comment }}</p>
+                        <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

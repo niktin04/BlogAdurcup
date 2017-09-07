@@ -26,9 +26,9 @@
                     <div class="col-md-12 col-sm-12 niktin-blog hover-disable">
                         <div class="col-md-3 col-sm-3 niktin-blog-image">
                             {% if delight.img_url == '#' %}
-                                <img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+                                <img class="lazy" data-src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
                             {% else %}
-                                <img src="{{ delight.img_url }}" alt="{{ delight.img_alt_tag }}">
+                                <img class="lazy" data-src="{{ delight.img_url }}" alt="{{ delight.img_alt_tag }}">
                             {% endif %}
                         </div>
                         <div class="col-md-9 col-sm-9 niktin-blog-division">
@@ -44,10 +44,10 @@
                         <ul class="pager">
                             {% if delights.has_previous %}
                                 <li class="previous"><a href="?page={{ delights.previous_page_number }}"><span
-                                        aria-hidden="true">&larr;</span> Older</a></li>
+                                        aria-hidden="true">&larr;</span> Newer</a></li>
                             {% else %}
                                 <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span>
-                                    Older</a>
+                                    Newer</a>
                                 </li>
                             {% endif %}
 
@@ -56,11 +56,11 @@
                         </span></li>
 
                             {% if delights.has_next %}
-                                <li class="next"><a href="?page={{ delights.next_page_number }}">Newer <span
+                                <li class="next"><a href="?page={{ delights.next_page_number }}">Older <span
                                         aria-hidden="true">&rarr;</span></a></li>
                             {% else %}
                                 <li class="next disabled"><a
-                                        href="#">Newer <span
+                                        href="#">Older <span
                                         aria-hidden="true">&rarr;</span></a></li>
                             {% endif %}
                         </ul>
@@ -73,7 +73,7 @@
 
         <div class="col-md-4">
 
-            <div class="col-md-12 col-sm-6 niktin-main">
+            <div class="col-md-12 col-sm-6 niktin-main" id="subscribe">
                 <div class="niktin-main-heading">SUBSCRIBE TO ADURCUP</div>
                 <form class="input-group niktin-subscribe" action="{% url 'subscribe' %}" method="POST">
                     {% csrf_token %}
@@ -117,9 +117,9 @@
                         <div class="col-md-12 col-sm-6 col-xs-12 niktin-side">
                             <div class="col-md-4 col-xs-3 niktin-side-newsmail">
                                 {% if newsmail.img_url == '#' %}
-                                    <img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+                                    <img class="lazy" data-src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
                                 {% else %}
-                                    <img src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
+                                    <img class="lazy" data-src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
                                 {% endif %}
                                 <div class="niktin-side-newsmail-mask"></div>
                                 <div class="niktin-side-newsmail-inline">

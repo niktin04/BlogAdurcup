@@ -26,7 +26,7 @@
             <div class="niktin-newsmail-divider-small"></div>
             {% if newsmail.img_url != '#' %}
                 <div class="niktin-newsmail-image">
-                    <img src="{{ newsmail.img_url }}">
+                    <img class="lazy" data-src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
                 </div>
             {% endif %}
             <div class="niktin-main-description">{{ newsmail.content|safe }}</div>

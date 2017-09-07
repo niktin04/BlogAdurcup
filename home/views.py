@@ -48,4 +48,4 @@ def subscribe(request):
     else:
         messages.info(request, 'Enter a valid email address.')
 
-    return redirect(request.META.get('HTTP_REFERER'))
+    return redirect(request.META.get('HTTP_REFERER') + '#subscribe')

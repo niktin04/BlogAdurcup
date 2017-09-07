@@ -24,3 +24,13 @@ class BlogTag(models.Model):
     def __str__(self):
         return self.tag
 
+
+class Comment(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    comment = models.TextField()
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    created_at = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return self.name + ': ' + self.comment
