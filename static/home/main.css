@@ -1,7 +1,7 @@
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-top: 50px;
-    background: #f4f4f4;
+    background: #fff;
 }
 
 a {
@@ -34,8 +34,8 @@ a:visited {
 }
 
 .niktin-footer {
-	background: #eee;
-	width: 100%;
+    background: #eee;
+    width: 100%;
 }
 
 /* SUBSCRIBE CSS */
@@ -45,7 +45,7 @@ a:visited {
 }
 
 .niktin-subscribe > input {
-    background: #f4f4f4;
+    background: #fff;
     outline: none;
     border-radius: 0;
     border: none;
@@ -71,7 +71,7 @@ a:visited {
 }
 
 .niktin-subscribe-button {
-    background: #f4f4f4;
+    background: #fff;
     border-radius: 0px;
     text-decoration: none;
     box-shadow: none;
@@ -94,7 +94,6 @@ a:visited {
     font-size: 0.82em;
 }
 
-
 /* DJANGO MESSAGES CSS */
 .info {
     color: red;
@@ -103,7 +102,6 @@ a:visited {
 .success {
     color: green;
 }
-
 
 /* SIDE CONTENT CSS */
 .niktin-side {
@@ -309,4 +307,11 @@ a:visited {
     width: 100%;
     padding: 10px 0;
     border-radius: 2px;
+}
+
+img.lazy {
+    display: block;
+
+    /* optional way, set loading as background */
+    background: url('images/Ripple.gif') no-repeat 50% 50%;
 }
