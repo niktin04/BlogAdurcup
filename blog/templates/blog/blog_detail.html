@@ -5,6 +5,7 @@
 {% block title %}Adurcup Blog : {{ blog.title }}{% endblock %}
 
 {% block load_files %}
+    <link rel="amphtml" href="{% url 'blog_detail_amp' blog.id %}">
     <link href="{% static 'blog/blog_detail.css' %}" rel="stylesheet">
 {% endblock %}
 

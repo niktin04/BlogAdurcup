@@ -20,3 +20,13 @@ def videos(request):
     }
 
     return render(request, 'video/videos.html', context)
+
+
+def videos_amp(request):
+    all_videos = Video.objects.all().order_by('-id')
+
+    context = {
+        'videos': all_videos,
+    }
+
+    return render(request, 'video/videos_amp.html', context)

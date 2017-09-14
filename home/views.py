@@ -38,6 +38,34 @@ def home(request):
     return render(request, 'home/home.html', context)
 
 
+def home_amp(request):
+    welcome = Welcome.objects.last()
+    quote = Quote.objects.last()
+    last_6_blogs = Blog.objects.all().order_by('-id')[:6]
+    blogs_exceed = len(Blog.objects.all()) > 6
+    last_6_delights = Delight.objects.all().order_by('-id')[:6]
+    delights_exceed = len(Delight.objects.all()) > 6
+    last_6_newsmails = NewsMail.objects.all().order_by('-id')[:6]
+    newsmails_exceed = len(NewsMail.objects.all()) > 6
+    last_2_videos = Video.objects.all().order_by('-id')[:2]
+    video_exceed = len(Video.objects.all()) > 2
+
+    context = {
+        'welcome': welcome,
+        'quote': quote,
+        'blogs': last_6_blogs,
+        'blog_exceed': blogs_exceed,
+        'delights': last_6_delights,
+        'delight_exceed': delights_exceed,
+        'newsmails': last_6_newsmails,
+        'newsmail_exceed': newsmails_exceed,
+        'videos': last_2_videos,
+        'video_exceed': video_exceed,
+    }
+
+    return render(request, 'home/home_amp.html', context)
+
+
 def subscribe(request):
     email = request.POST['email']
 

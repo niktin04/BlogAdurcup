@@ -30,9 +30,25 @@ def newsmails(request):
     return render(request, 'newsmail/newsmails.html', context)
 
 
+def newsmails_amp(request):
+    all_newsmails = NewsMail.objects.all().order_by('-id')
+
+    context = {
+        'newsmails': all_newsmails,
+    }
+    return render(request, 'newsmail/newsmails_amp.html', context)
+
+
 def newsmail_detail(request, newsmail_id):
     newsmail = get_object_or_404(NewsMail, id=newsmail_id)
     context = {
         'newsmail': newsmail,
     }
     return render(request, 'newsmail/newsmail_detail.html', context)
+
+def newsmail_detail_amp(request, newsmail_id):
+    newsmail = get_object_or_404(NewsMail, id=newsmail_id)
+    context = {
+        'newsmail': newsmail,
+    }
+    return render(request, 'newsmail/newsmail_detail_amp.html', context)

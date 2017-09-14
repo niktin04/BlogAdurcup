@@ -1,0 +1,54 @@
+{% extends 'home/index_amp.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Adurcup Delights
+{% endblock %}
+
+{% block amp_page_link %}
+    <link rel="canonical" href="{% url 'delight:delights' %}">
+{% endblock %}
+
+{% block navigation_links %}
+    <li class="sidebar-link"><a href="{% url 'home_amp' %}">Home</a></li>
+    <li class="sidebar-link"><a href="{% url 'blogs_amp' %}">Blogs</a></li>
+    <li class="sidebar-link active"><a href="{% url 'delights_amp' %}">Delights</a></li>
+    <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}">NewsMails</a></li>
+    <li class="sidebar-link"><a href="{% url 'videos_amp' %}">Videos</a></li>
+{% endblock %}
+
+{% block carousel_header %}
+{% endblock %}
+
+{% block main_body %}
+    <div class="section">
+        <p class="section-heading">RESTAURANT DELIGHTS</p>
+        {% for delight in delights %}
+            <div class="blog-box">
+                <div class="blog-box-image-box">
+                    {% if delight.img_url == '#' %}
+                        <amp-img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400"
+                                 height="300"
+                                 layout="responsive">>
+                        </amp-img>
+                    {% else %}
+                        <amp-img src="{{ delight.img_url }}" alt="{{ delight.img_alt_tag }}" width="400" height="300"
+                                 layout="responsive">>
+                        </amp-img>
+                    {% endif %}
+                </div>
+                <h1 class="blog-box-heading">{{ delight.number }}</h1>
+                <p class="blog-box-summary">{{ delight.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block videos %}
+{% endblock %}
+
+{% block delights %}
+{% endblock %}
+
+{% block newsmails %}
+{% endblock %}

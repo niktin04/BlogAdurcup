@@ -1,0 +1,52 @@
+{% extends 'home/index_amp.html' %}
+{% load staticfiles %}
+
+{% block title %}
+{% endblock %}
+
+{% block amp_page_link %}
+{% endblock %}
+
+{% block load_top_scripts %}
+    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+{% endblock %}
+
+{% block custom_amp_style %}
+    <link rel="canonical" href="{% url 'video:videos' %}">
+{% endblock %}
+
+{% block navigation_links %}
+    <li class="sidebar-link"><a href="{% url 'home_amp' %}">Home</a></li>
+    <li class="sidebar-link"><a href="{% url 'blogs_amp' %}">Blogs</a></li>
+    <li class="sidebar-link"><a href="{% url 'delights_amp' %}">Delights</a></li>
+    <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}">NewsMails</a></li>
+    <li class="sidebar-link active"><a href="{% url 'videos_amp' %}">Videos</a></li>
+{% endblock %}
+
+{% block carousel_header %}
+{% endblock %}
+
+{% block main_body %}
+{% endblock %}
+
+{% block videos %}
+    <div class="section">
+        <p class="section-heading">ADURCUP VIDEOS</p>
+
+        {% for video in videos %}
+            <div class="video-box">
+                <div class="video-box-video-box">
+                    <amp-youtube data-videoid="{{ video.video_watch_url }}" layout="responsive" width="480"
+                                 height="270"></amp-youtube>
+                </div>
+                <h1 class="video-box-heading">{{ video.title }}</h1>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block delights %}
+{% endblock %}
+
+{% block newsmails %}
+{% endblock %}

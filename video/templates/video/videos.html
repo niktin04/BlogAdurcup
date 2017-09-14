@@ -4,6 +4,7 @@
 {% block title %}Adurcup Videos{% endblock %}
 
 {% block load_files %}
+    <link rel="amphtml" href="{% url 'videos_amp' %}">
     <link href="{% static 'home/home.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -99,9 +100,11 @@
                         <div class="col-md-12 col-sm-6 col-xs-12 niktin-side">
                             <div class="col-md-4 col-xs-3 niktin-side-newsmail">
                                 {% if newsmail.img_url == '#' %}
-                                    <img class="lazy" data-src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+                                    <img class="lazy" data-src="{% static 'home/images/bg.jpg' %}"
+                                         alt="Plastic Packaging">
                                 {% else %}
-                                    <img class="lazy" data-src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
+                                    <img class="lazy" data-src="{{ newsmail.img_url }}"
+                                         alt="{{ newsmail.img_alt_tag }}">
                                 {% endif %}
                                 <div class="niktin-side-newsmail-mask"></div>
                                 <div class="niktin-side-newsmail-inline">

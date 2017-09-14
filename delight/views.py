@@ -28,3 +28,13 @@ def delights(request):
     }
 
     return render(request, 'delight/delights.html', context)
+
+
+def delights_amp(request):
+    all_delights = Delight.objects.all().order_by('-id')
+
+    context = {
+        'delights': all_delights
+    }
+
+    return render(request, 'delight/delights_amp.html', context)

@@ -1,0 +1,198 @@
+{% extends 'home/index_amp.html' %}
+{% load staticfiles %}
+{% load social_share %}
+
+{% block title %}
+    Adurcup Blog : {{ blog.title }}
+{% endblock %}
+
+{% block amp_page_link %}
+    <link rel="canonical" href="{% url 'blog:blog_detail' blog.id %}">
+{% endblock %}
+
+{% block custom_amp_style %}
+    {{ block.super }}
+    .share-div {
+    font-size: 12px;
+    }
+
+    .share {
+    display: block;
+    padding: 0;
+    margin: 5px 0;
+    list-style: none;
+    }
+
+    .share-link {
+    display: inline;
+    margin-right: 10px;
+    }
+
+    .share-image {
+    width: 20px;
+    height: 20px;
+    }
+
+    .comment-box {
+    background: #f4f4f4;
+    padding: 10px;
+    }
+
+    .comment {
+    margin: 10px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    }
+
+    .comment-heading {
+    margin: 0;
+    padding: 5px 0 10px 5px;
+    font-size: 12px;
+    }
+
+    .comment-input {
+    width: 100%;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    padding: 5px 7px;
+    box-sizing: border-box;
+    }
+
+    .comment-submit {
+    width: 100%;
+    background: #069;
+    color: #fff;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    font-size: 12px;
+    padding: 10px;
+    margin: 5px 0;
+    }
+
+    .comment-name-time {
+    width: 100%;
+    overflow: hidden;
+    }
+
+    .comment-name {
+    color: #666;
+    margin: 0;
+    font-size: 14px;
+    float: left;
+    margin-right: 10px;
+    }
+
+    .comment-time {
+    color: #999;
+    font-size: 12px;
+    margin: 0;
+    padding-top: 2px;
+    font-weight: 100;
+    float: left;
+    }
+
+    .comment-comment {
+    color: #666;
+    font-size: 12px;
+    margin: 5px 0;
+    }
+{% endblock %}
+
+{% block carousel_header %}
+    <div class="carousel">
+        {% if blog.img_url == '#' %}
+            <amp-img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400" height="300"
+                     layout="responsive">>
+            </amp-img>
+        {% else %}
+            <amp-img src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}" width="400" height="300"
+                     layout="responsive">>
+            </amp-img>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block main_body %}
+    <div class="section">
+        <div class="blog-box">
+            <h1 class="blog-box-heading">{{ blog.title }}</h1>
+            <div class="blog-box-author-and-date">
+                <p class="blog-box-author">{{ blog.author }}</p>
+                <p class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
+            </div>
+            <ul class="blog-box-tags">
+                {% for tag in blog.blogtag_set.all %}
+                    <li class="blog-box-tag">{{ tag.tag }}</li>
+                    <li class="blog-box-tag-divider">/</li>
+                {% endfor %}
+            </ul>
+            <div class="blog-box-summary">{{ blog.content|safe }}</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <hr>
+        <div class="share-div">
+            Share on
+            <ul class="share">
+                <li class="share-link">{% post_to_facebook request.path 'Facebook' %}</li>
+                <li class="share-link">{% post_to_twitter blog.title request.path 'Twitter' %}</li>
+                <li class="share-link">{% post_to_linkedin blog.title request.path 'LinkedIn' %}</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="comment-box" id="comments-section">
+            <h6 class="comment-heading">Comments Section</h6>
+            <form action-xhr="{% url 'blog:blog_comment' blog.id %}" method="POST"
+                  id="comment_form" target="_top">
+                {% csrf_token %}
+                <textarea class="comment-input" name="message" form="comment_form"
+                          placeholder="Enter your comment here"></textarea>
+                <input class="comment-input" type="text" name="name" placeholder="Name">
+                <input class="comment-input" type="email" name="email" placeholder="Email">
+                <button class="comment-submit">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+
+    {% if blog.comment_set.all %}
+        <div class="section">
+            <div class="comment-box">
+                {% for comment in blog.comment_set.all reversed %}
+                    <div class="comment">
+                        <div class="comment-name-time">
+                            <h5 class="comment-name">{{ comment.name }}</h5>
+                            <p class="comment-time">{{ comment.created_at|date:"d M o \a\t H:i" }}</p>
+                        </div>
+                        <p class="comment-comment">{{ comment.comment }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block videos %}
+{% endblock %}
+
+{% block subscribe %}
+{% endblock %}
+
+{% block connect %}
+{% endblock %}
+
+{% block delights %}
+{% endblock %}
+
+{% block newsmails %}
+{% endblock %}
+
+{% block load_bottom_scripts %}
+{% endblock %}

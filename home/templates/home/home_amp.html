@@ -1,0 +1,18 @@
+{% extends 'home/index_amp.html' %}
+{% load staticfiles %}
+
+{% block amp_page_link %}
+    <link rel="canonical" href="{% url 'home:home' %}">
+{% endblock %}
+
+{% block navigation_links %}
+    <li class="sidebar-link active"><a href="{% url 'home_amp' %}">Home</a></li>
+    <li class="sidebar-link"><a href="{% url 'blogs_amp' %}">Blogs</a></li>
+    <li class="sidebar-link"><a href="{% url 'delights_amp' %}">Delights</a></li>
+    <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}">NewsMails</a></li>
+    <li class="sidebar-link"><a href="{% url 'videos_amp' %}">Videos</a></li>
+{% endblock %}
+
+{% block load_top_scripts %}
+    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+{% endblock %}

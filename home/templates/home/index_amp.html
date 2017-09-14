@@ -1,0 +1,672 @@
+<!doctype html>
+<html ⚡>
+<head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    {% load staticfiles %}
+    <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+
+    <title>{% block title %}Adurcup Blog : Educating Restaurants{% endblock %}</title>
+
+    {% block amp_page_link %}
+    {% endblock %}
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    {% block load_top_scripts %}
+    {% endblock %}
+
+    <style amp-boilerplate>body {
+        -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+        animation: -amp-start 8s steps(1, end) 0s 1 normal both
+    }
+
+    @-webkit-keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+        to {
+            visibility: visible
+        }
+    }
+
+    @-moz-keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+        to {
+            visibility: visible
+        }
+    }
+
+    @-ms-keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+        to {
+            visibility: visible
+        }
+    }
+
+    @-o-keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+        to {
+            visibility: visible
+        }
+    }
+
+    @keyframes -amp-start {
+        from {
+            visibility: hidden
+        }
+        to {
+            visibility: visible
+        }
+    }</style>
+    <noscript>
+        <style amp-boilerplate>body {
+            -webkit-animation: none;
+            -moz-animation: none;
+            -ms-animation: none;
+            animation: none
+        }</style>
+    </noscript>
+
+    <style amp-custom>
+        body {
+            font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            padding-top: 50px;
+        }
+
+        footer {
+            margin: 0;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            border-top: 1px solid #ccc;
+            background: #efefef;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        form.amp-form-submit-success [submit-success],
+        form.amp-form-submit-error [submit-error] {
+            margin-top: 16px;
+        }
+
+        form.amp-form-submit-success [submit-success] {
+            color: green;
+        }
+
+        form.amp-form-submit-error [submit-error] {
+            color: red;
+        }
+
+        form.amp-form-submit-success.hide-inputs > input {
+            display: none;
+        }
+
+        amp-sidebar {
+            width: 250px;
+            padding-right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .amp-close-image {
+            top: 15px;
+            left: 225px;
+            cursor: pointer;
+        }
+
+        .sidebar-link {
+            margin-bottom: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            list-style: none;
+        }
+
+        .sidebar-link > a {
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .active {
+            font-weight: 700;
+        }
+
+        .navigation-bar {
+            width: 100%;
+            height: 50px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+
+            background: #000;
+            color: #fff;
+
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        .amp-toggle-menu-image {
+            padding: 5px;
+            margin: 10px 20px;
+            float: left;
+        }
+
+        .adurcup-logo {
+            font-size: 20px;
+            padding: 13px 5px;
+            float: left;
+            margin: 0 5px;
+        }
+
+        .carousel {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+
+            min-height: 300px;
+            max-height: 400px;
+        }
+
+        .carousel-mask {
+            position: absolute;
+            bottom: 0;
+            display: block;
+
+            padding: 10px 0;
+
+            text-align: center;
+
+            width: 100%;
+            height: auto;
+
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .carousel-mask-heading {
+            padding: 0 40px;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .carousel-mask-content {
+            padding: 0 40px;
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        .quote {
+            margin: 40px 10px;
+            padding: 20px 40px;
+            font-style: italic;
+            border-top: 2px solid #f4f4f4;
+            border-bottom: 2px solid #f4f4f4;
+        }
+
+        .quote-content {
+            display: block;
+            font-size: 18px;
+            font-weight: 900;
+            margin: 0;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .quote-marks {
+            position: relative;
+            top: 5px;
+            font-size: 28px;
+        }
+
+        .quote-person {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            padding: 10px 0 0 0;
+            margin: 0;
+        }
+
+        .section {
+            margin: 20px 20px;
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .section-heading {
+            padding: 5px;
+            color: #333;
+            font-weight: 700;
+            border-bottom: 2px solid #333;
+        }
+
+        .blog-box {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .blog-box-image-box {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+
+            min-height: 200px;
+            max-height: 300px;
+        }
+
+        .blog-box-image-mask {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100;
+            padding: 0;
+            margin: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .blog-box-heading {
+            display: block;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 5px 0;
+        }
+
+        .blog-box-author-and-date {
+            font-size: 12px;
+            color: #666;
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .blog-box-author {
+            float: left;
+            margin: 5px 0;
+        }
+
+        .blog-box-date {
+            float: right;
+            margin: 5px 0;
+        }
+
+        .blog-box-tags {
+            font-size: 12px;
+            color: #069;
+            display: block;
+            padding: 0;
+            margin: 5px 0;
+            list-style: none;
+        }
+
+        .blog-box-tag {
+            display: inline;
+        }
+
+        .blog-box-tag-divider {
+            color: #333;
+            font-weight: 700;
+            padding: 0 5px;
+            display: inline;
+        }
+
+        .blog-box-summary {
+            display: block;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .button-view-all {
+            width: 100%;
+            padding: 16px;
+            background: #333;
+            outline: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .video-box {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .video-box-video-box {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-box-heading {
+            display: block;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 5px 0;
+        }
+
+        .subscribe-form {
+            width: 100%;
+        }
+
+        .subscribe-form-input {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            padding: 10px;
+            outline: none;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        .subscribe-form-button {
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            margin: 5px 0;
+            background: #000;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        .niktin-social {
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .niktin-social > li {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 5px;
+            overflow: hidden;
+        }
+
+        .niktin-social > li > a {
+            overflow: hidden;
+            display: inline-block
+        }
+
+        .delight-number {
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+
+        .delight-content {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+
+        .newsmail-mask-heading {
+            position: absolute;
+            color: #fff;
+            text-align: center;
+            top: 47%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            bottom: 53%;
+            font-weight: 100;
+            font-family: 'Lobster', cursive;
+        }
+
+        .subscribe-success-message {
+            font-size: 10px;
+            color: green;
+            padding: 0;
+            margin: 0;
+        }
+
+        {% block custom_amp_style %}
+        {% endblock %}
+    </style>
+</head>
+
+<body>
+<amp-sidebar id="sidebar" layout="nodisplay" side="left">
+    <amp-img class="amp-close-image" src="{% static 'home/images/ic_close_white_18dp_2x.png' %}" width="20" height="20"
+             alt="close sidebar"
+             on="tap:sidebar.close" role="button" tabindex="0"></amp-img>
+    <ul>
+        {% block navigation_links %}
+            <li class="sidebar-link active"><a href="{% url 'home_amp' %}">Home</a></li>
+            <li class="sidebar-link"><a href="{% url 'blogs_amp' %}">Blogs</a></li>
+            <li class="sidebar-link"><a href="{% url 'delights_amp' %}">Delights</a></li>
+            <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}">NewsMails</a></li>
+            <li class="sidebar-link"><a href="{% url 'videos_amp' %}">Videos</a></li>
+        {% endblock %}
+    </ul>
+</amp-sidebar>
+
+<div class="navigation-bar">
+    <amp-img class="amp-toggle-menu-image" src="{% static 'home/images/ic_menu_white_18dp_2x.png' %}" width="20"
+             height="20"
+             alt="toggle sidebar"
+             on="tap:sidebar.toggle" role="button" tabindex="0"></amp-img>
+    <h3 class="adurcup-logo"><a href="{% url 'home_amp' %}">BLOG ADURCUP</a></h3>
+</div>
+
+{% block carousel_header %}
+    <div class="carousel">
+        {% if welcome.img_url == '#' %}
+            <amp-img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400" height="300"
+                     layout="responsive">>
+            </amp-img>
+        {% else %}
+            <amp-img src="{{ welcome.img_url }}" alt="{{ welcome.img_alt_tag }}" width="400" height="300"
+                     layout="responsive">>
+            </amp-img>
+        {% endif %}
+        <div class="carousel-mask">
+            <h4 class="carousel-mask-heading">{{ welcome.title }}</h4>
+            <p class="carousel-mask-content">{{ welcome.content }}</p>
+        </div>
+    </div>
+
+    <div class="quote">
+        <p class="quote-content">
+            <span class="quote-marks">"</span>
+            {{ quote.quote }}
+            <span class="quote-marks">"</span>
+        </p>
+        <p class="quote-person">{{ quote.author }}</p>
+    </div>
+{% endblock %}
+
+{% block main_body %}
+    <div class="section">
+        <p class="section-heading">LATEST BLOGS</p>
+        {% for blog in blogs %}
+            <a href="{% url 'blog_detail_amp' blog.id %}">
+                <div class="blog-box">
+                    <div class="blog-box-image-box">
+                        {% if blog.img_url == '#' %}
+                            <amp-img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400"
+                                     height="300"
+                                     layout="responsive">>
+                            </amp-img>
+                        {% else %}
+                            <amp-img src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}" width="400" height="300"
+                                     layout="responsive">>
+                            </amp-img>
+                        {% endif %}
+                    </div>
+                    <h1 class="blog-box-heading">{{ blog.title }}</h1>
+                    <div class="blog-box-author-and-date">
+                        <p class="blog-box-author">{{ blog.author }}</p>
+                        <p class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
+                    </div>
+                    <ul class="blog-box-tags">
+                        {% for tag in blog.blogtag_set.all %}
+                            <li class="blog-box-tag">{{ tag.tag }}</li>
+                            <li class="blog-box-tag-divider">/</li>
+                        {% endfor %}
+                    </ul>
+                    {% if blog.summary == '#' %}
+                        <p class="blog-box-summary">{{ blog.content|safe }}</p>
+                    {% else %}
+                        <p class="blog-box-summary">{{ blog.summary }}</p>
+                    {% endif %}
+                </div>
+            </a>
+        {% endfor %}
+
+        {% if blog_exceed %}
+            <a href="{% url 'blogs_amp' %}">
+                <button class="button-view-all">VIEW ALL BLOGS</button>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block videos %}
+    <div class="section">
+        <p class="section-heading">LATEST VIDEOS</p>
+
+        {% for video in videos %}
+            <div class="video-box">
+                <div class="video-box-video-box">
+                    <amp-youtube data-videoid="{{ video.video_watch_url }}" layout="responsive" width="480"
+                                 height="270"></amp-youtube>
+                </div>
+                <h1 class="video-box-heading">{{ video.title }}</h1>
+            </div>
+        {% endfor %}
+
+        {% if video_exceed %}
+            <a href="{% url 'videos_amp' %}">
+                <button class="button-view-all">VIEW ALL VIDEOS</button>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block subscribe %}
+    <div class="section">
+        <p class="section-heading">SUBSCRIBE TO ADURCUP</p>
+        <form class="subscribe-form" action-xhr="{% url 'subscribe' %}" method="POST" id="subscribe"
+              target="_top">
+            {% csrf_token %}
+            <input class="subscribe-form-input" type="email" name="email" placeholder="email" required>
+            <button class="subscribe-form-button" type="submit" value="SUBSCRIBE">SUBSCRIBE</button>
+        </form>
+        <div class="subscribe-success-message">
+            {% if messages %}
+                {% for message in messages %}
+                    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block connect %}
+    <div class="section">
+        <p class="section-heading">CONNECT WITH ADURCUP</p>
+        <ul class="niktin-social">
+            <li><a href="https://www.adurcup.com/" target="_blank">
+                <amp-img src="{% static 'home/images/www.png' %}" alt="website icon" width="24" height="24">
+                </amp-img>
+            </a></li>
+            <li><a href="https://www.facebook.com/adurcup.care/" target="_blank">
+                <amp-img src="{% static 'home/images/Facebook.png' %}" alt="facebook icon" width="24" height="24">
+                </amp-img>
+            </a></li>
+            <li><a href="https://twitter.com/adurcup" target="_blank">
+                <amp-img src="{% static 'home/images/Twitter.png' %}" alt="twitter icon" width="24" height="24">
+                </amp-img>
+            </a></li>
+            <li><a href="https://www.linkedin.com/company/adcount-technologies-pvt-ltd" target="_blank">
+                <amp-img src="{% static 'home/images/Linked-in.png' %}" alt="linkedin icon" width="24" height="24">
+                </amp-img>
+            </a></li>
+            <li><a href="https://www.instagram.com/adurcup/" target="_blank">
+                <amp-img src="{% static 'home/images/Instgram.png' %}" alt="instagram icon" width="24" height="24">
+                </amp-img>
+            </a></li>
+            <li><a href="https://www.youtube.com/channel/UCrbAbIJJ7FSFSUPhURBDtAQ" target="_blank">
+                <amp-img src="{% static 'home/images/YouTube.png' %}" alt="youtube icon" width="24" height="24">
+                </amp-img>
+            </a></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block delights %}
+    <div class="section">
+        <p class="section-heading">RESTAURANT DELIGHTS</p>
+
+        {% for delight in delights %}
+            <div class="blog-box">
+                <p class="delight-number">{{ delight.number }}</p>
+                <p class="delight-content">{{ delight.content }}</p>
+            </div>
+        {% endfor %}
+
+        {% if delight_exceed %}
+            <a href="{% url 'delights_amp' %}">
+                <button class="button-view-all">VIEW ALL DELIGHTS</button>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block newsmails %}
+    <div class="section">
+        <p class="section-heading">ADURCUP NEWSMAILS</p>
+
+        {% for newsmail in newsmails %}
+            <a href="{% url 'newsmail_detail_amp' newsmail.id %}">
+                <div class="blog-box">
+                    <div class="blog-box-image-box">
+                        {% if newsmail.img_url == '#' %}
+                            <amp-img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400"
+                                     height="300"
+                                     layout="responsive">>
+                            </amp-img>
+                        {% else %}
+                            <amp-img src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}" width="400"
+                                     height="300"
+                                     layout="responsive">>
+                            </amp-img>
+                        {% endif %}
+                        <div class="blog-box-image-mask">
+                            <h3 class="newsmail-mask-heading">{{ newsmail.title }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+
+        {% if newsmail_exceed %}
+            <a href="{% url 'newsmails_amp' %}">
+                <button class="button-view-all">VIEW ALL NEWSMAILS</button>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+<footer>Copyright 2017. Adcount Technologies Private Limited.</footer>
+{% block load_bottom_scripts %}
+{% endblock %}
+</body>
+</html>
