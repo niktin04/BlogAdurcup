@@ -4,7 +4,7 @@
 {% block title %}Adurcup Newsmail : {{ newsmail.title }}{% endblock %}
 
 {% block load_files %}
-    <link rel="amphtml" href="{% url 'newsmail_detail_amp' newsmail.id %}">
+    <link rel="amphtml" href="{{ amp_url }}">
     <link href="{% static 'newsmail/newsmail_detail.css' %}" rel="stylesheet">
 {% endblock %}
 

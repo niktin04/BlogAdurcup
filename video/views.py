@@ -10,6 +10,7 @@ def videos(request):
     last_6_newsmails = NewsMail.objects.all().order_by('-id')[:6]
     newsmails_exceed = len(NewsMail.objects.all()) > 6
     all_videos = Video.objects.all().order_by('-id')
+    amp_url = 'http://blog.adurcup.com/amp/videos/'
 
     context = {
         'delights': last_6_delights,
@@ -17,6 +18,7 @@ def videos(request):
         'newsmails': last_6_newsmails,
         'newsmail_exceed': newsmails_exceed,
         'videos': all_videos,
+        'amp_url': amp_url,
     }
 
     return render(request, 'video/videos.html', context)
@@ -24,9 +26,11 @@ def videos(request):
 
 def videos_amp(request):
     all_videos = Video.objects.all().order_by('-id')
+    amp_url = 'http://blog.adurcup.com/videos/'
 
     context = {
         'videos': all_videos,
+        'amp_url': amp_url,
     }
 
     return render(request, 'video/videos_amp.html', context)

@@ -21,6 +21,7 @@ def home(request):
     newsmails_exceed = len(NewsMail.objects.all()) > 6
     last_2_videos = Video.objects.all().order_by('-id')[:2]
     video_exceed = len(Video.objects.all()) > 2
+    amp_url = 'http://blog.adurcup.com/amp/home/'
 
     context = {
         'welcome': welcome,
@@ -33,6 +34,7 @@ def home(request):
         'newsmail_exceed': newsmails_exceed,
         'videos': last_2_videos,
         'video_exceed': video_exceed,
+        'amp_url': amp_url,
     }
 
     return render(request, 'home/home.html', context)
@@ -49,6 +51,7 @@ def home_amp(request):
     newsmails_exceed = len(NewsMail.objects.all()) > 6
     last_2_videos = Video.objects.all().order_by('-id')[:2]
     video_exceed = len(Video.objects.all()) > 2
+    amp_url = 'http://blog.adurcup.com/amp/home/'
 
     context = {
         'welcome': welcome,
@@ -61,6 +64,7 @@ def home_amp(request):
         'newsmail_exceed': newsmails_exceed,
         'videos': last_2_videos,
         'video_exceed': video_exceed,
+        'amp_url': amp_url,
     }
 
     return render(request, 'home/home_amp.html', context)

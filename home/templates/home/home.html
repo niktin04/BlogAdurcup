@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block load_files %}
-    <link rel="amphtml" href="{% url 'home_amp' %}">
+    <link rel="amphtml" href="{{ amp_url }}">
     <link href="{% static 'home/home.css' %}" rel="stylesheet" xmlns="http://www.w3.org/1999/html"
           xmlns="http://www.w3.org/1999/html">
 {% endblock %}

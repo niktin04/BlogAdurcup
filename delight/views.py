@@ -10,6 +10,7 @@ def delights(request):
 
     last_6_newsmail = NewsMail.objects.all().order_by('-id')[:6]
     newsmail_exceed = len(NewsMail.objects.all()) > 6
+    amp_url = 'http://blog.adurcup.com/amp/delights/'
 
     page = request.GET.get('page')
     try:
@@ -25,6 +26,7 @@ def delights(request):
         'delights': delights,
         'newsmails': last_6_newsmail,
         'newsmail_exceed': newsmail_exceed,
+        'amp_url': amp_url,
     }
 
     return render(request, 'delight/delights.html', context)
@@ -32,9 +34,11 @@ def delights(request):
 
 def delights_amp(request):
     all_delights = Delight.objects.all().order_by('-id')
+    amp_url = 'http://blog.adurcup.com/delights/'
 
     context = {
-        'delights': all_delights
+        'delights': all_delights,
+        'amp_url': amp_url,
     }
 
     return render(request, 'delight/delights_amp.html', context)

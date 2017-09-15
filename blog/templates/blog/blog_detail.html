@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block load_files %}
-    <link rel="amphtml" href="{% url 'blog_detail_amp' blog.id %}">
+    <link rel="amphtml" href="{{ amp_url }}">
     <link href="{% static 'blog/blog_detail.css' %}" rel="stylesheet">
 {% endblock %}
 

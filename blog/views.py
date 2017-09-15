@@ -15,6 +15,7 @@ def blogs(request):
     delights_exceed = len(Delight.objects.all()) > 6
     last_6_newsmails = NewsMail.objects.all().order_by('-id')[:6]
     newsmails_exceed = len(NewsMail.objects.all()) > 6
+    amp_url = 'http://blog.adurcup.com/amp/blogs/'
 
     page = request.GET.get('page')
     try:
@@ -32,6 +33,7 @@ def blogs(request):
         'delight_exceed': delights_exceed,
         'newsmails': last_6_newsmails,
         'newsmail_exceed': newsmails_exceed,
+        'amp_url': amp_url,
     }
     return render(request, 'blog/blogs.html', context)
 
@@ -44,6 +46,7 @@ def blogs_amp(request):
     delights_exceed = len(Delight.objects.all()) > 6
     last_6_newsmails = NewsMail.objects.all().order_by('-id')[:6]
     newsmails_exceed = len(NewsMail.objects.all()) > 6
+    amp_url = 'http://blog.adurcup.com/blogs/'
 
     page = request.GET.get('page')
     try:
@@ -61,22 +64,27 @@ def blogs_amp(request):
         'delight_exceed': delights_exceed,
         'newsmails': last_6_newsmails,
         'newsmail_exceed': newsmails_exceed,
+        'amp_url': amp_url,
     }
     return render(request, 'blog/blogs_amp.html', context)
 
 
 def blog_detail(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
+    amp_url = 'http://blog.adurcup.com/amp/blogs/' + blog_id + '/'
     context = {
         'blog': blog,
+        'amp_url': amp_url,
     }
     return render(request, 'blog/blog_detail.html', context)
 
 
 def blog_detail_amp(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
+    amp_url = 'http://blog.adurcup.com/blogs/' + blog_id + '/'
     context = {
         'blog': blog,
+        'amp_url': amp_url,
     }
     return render(request, 'blog/blog_detail_amp.html', context)
 

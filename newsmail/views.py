@@ -11,6 +11,7 @@ def newsmails(request):
 
     last_6_delights = Delight.objects.all().order_by('-id')[:6]
     delight_exceed = len(Delight.objects.all()) > 6
+    amp_url = 'http://blog.adurcup.com/amp/newsmails/'
 
     page = request.GET.get('page')
     try:
@@ -26,29 +27,37 @@ def newsmails(request):
         'newsmails': newsmails,
         'delights': last_6_delights,
         'delight_exceed': delight_exceed,
+        'amp_url': amp_url,
     }
     return render(request, 'newsmail/newsmails.html', context)
 
 
 def newsmails_amp(request):
     all_newsmails = NewsMail.objects.all().order_by('-id')
+    amp_url = 'http://blog.adurcup.com/newsmails/'
 
     context = {
         'newsmails': all_newsmails,
+        'amp_url': amp_url,
     }
     return render(request, 'newsmail/newsmails_amp.html', context)
 
 
 def newsmail_detail(request, newsmail_id):
     newsmail = get_object_or_404(NewsMail, id=newsmail_id)
+    amp_url = 'http://blog.adurcup.com/amp/newsmails/' + newsmail_id + '/'
+
     context = {
         'newsmail': newsmail,
+        'amp_url': amp_url,
     }
     return render(request, 'newsmail/newsmail_detail.html', context)
 
 def newsmail_detail_amp(request, newsmail_id):
     newsmail = get_object_or_404(NewsMail, id=newsmail_id)
+    amp_url = 'http://blog.adurcup.com/newsmails/' + newsmail_id + '/'
     context = {
         'newsmail': newsmail,
+        'amp_url': amp_url,
     }
     return render(request, 'newsmail/newsmail_detail_amp.html', context)
