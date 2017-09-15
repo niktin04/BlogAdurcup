@@ -10,6 +10,16 @@
     <link rel="canonical" href="{% url 'blog:blog_detail' blog.id %}">
 {% endblock %}
 
+{% block load_meta_content %}
+    <meta property="og:url"
+          content="{{ request.build_absolute_uri }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="{{ blog.title }}"/>
+    <meta property="og:description" content="{{ blog.summary }}"/>
+    <meta property="og:image"
+          content="{{ blog.img_url }}"/>
+{% endblock %}
+
 {% block custom_amp_style %}
     {{ block.super }}
     .share-div {
@@ -150,7 +160,7 @@
     <div class="section">
         <div class="comment-box" id="comments-section">
             <h6 class="comment-heading">Comments Section</h6>
-            <form action-xhr="{% url 'blog:blog_comment' blog.id %}" method="POST"
+            <form action-xhr="//blog.adurcup.com/blogs/{{ blog.id }}/comment/" method="POST"
                   id="comment_form" target="_top">
                 {% csrf_token %}
                 <textarea class="comment-input" name="message" form="comment_form"

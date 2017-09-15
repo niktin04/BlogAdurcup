@@ -4,6 +4,16 @@
 
 {% block title %}Adurcup Blog : {{ blog.title }}{% endblock %}
 
+{% block load_meta_files %}
+    <meta property="og:url"
+          content="{{ request.build_absolute_uri }}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="{{ blog.title }}"/>
+    <meta property="og:description" content="{{ blog.summary }}"/>
+    <meta property="og:image"
+          content="{{ blog.img_url }}"/>
+{% endblock %}
+
 {% block load_files %}
     <link rel="amphtml" href="{% url 'blog_detail_amp' blog.id %}">
     <link href="{% static 'blog/blog_detail.css' %}" rel="stylesheet">
