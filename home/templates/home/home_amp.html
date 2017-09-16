@@ -6,11 +6,11 @@
 {% endblock %}
 
 {% block navigation_links %}
-    <li class="sidebar-link active"><a href="{% url 'home_amp' %}">Home</a></li>
-    <li class="sidebar-link"><a href="{% url 'blogs_amp' %}">Blogs</a></li>
-    <li class="sidebar-link"><a href="{% url 'delights_amp' %}">Delights</a></li>
-    <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}">NewsMails</a></li>
-    <li class="sidebar-link"><a href="{% url 'videos_amp' %}">Videos</a></li>
+    <li class="sidebar-link active"><a href="{% url 'home_amp' %}" itemprop="url"><span itemprop="name">Home</span></a></li>
+    <li class="sidebar-link"><a href="{% url 'blogs_amp' %}" itemprop="url"><span itemprop="name">Blogs</span></a></li>
+    <li class="sidebar-link"><a href="{% url 'delights_amp' %}" itemprop="url"><span itemprop="name">Delights</span></a></li>
+    <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}" itemprop="url"><span itemprop="name">NewsMails</span></a></li>
+    <li class="sidebar-link"><a href="{% url 'videos_amp' %}" itemprop="url"><span itemprop="name">Videos</span></a></li>
 {% endblock %}
 
 {% block load_top_scripts %}

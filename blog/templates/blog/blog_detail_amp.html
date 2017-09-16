@@ -11,13 +11,23 @@
 {% endblock %}
 
 {% block load_meta_content %}
-    <meta property="og:url"
-          content="{{ request.build_absolute_uri }}"/>
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{ blog.title }}"/>
-    <meta property="og:description" content="{{ blog.summary }}"/>
-    <meta property="og:image"
-          content="{{ blog.img_url }}"/>
+    <meta property="og:url"
+          content="{{ request.build_absolute_uri }}"/>
+    <meta property="og:description" content="{{ blog.summary | truncatewords:28 }}"/>
+    <meta property="og:image" content="{{ blog.img_url }}"/>
+    <meta property="og:site_name" content="Adurcup Blog"/>
+    <meta property="article:published_time" content="{{ blog.created_at|date:"o-m-d\TH:i:sO" }}"/>
+    <meta property="article:modified_time" content="{{ blog.created_at|date:"o-m-d\TH:i:sO" }}"/>
+    <meta property="article:section" content="Blogs"/>
+    <meta property="og:locale" content="en_IN"/>
+    {% for tag in blog.blogtag_set.all %}
+        <meta property="article:tag" content="{{ tag.tag }}"/>{% endfor %}
+
+    <meta name="twitter:site" content="@Adurcup"/>
+    <meta name="twitter:image" content="{{ blog.img_url }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
 {% endblock %}
 
 {% block custom_amp_style %}
@@ -114,79 +124,85 @@
 {% endblock %}
 
 {% block carousel_header %}
-    <div class="carousel">
-        {% if blog.img_url == '#' %}
-            <amp-img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400" height="300"
-                     layout="responsive">>
-            </amp-img>
-        {% else %}
-            <amp-img src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}" width="400" height="300"
-                     layout="responsive">>
-            </amp-img>
-        {% endif %}
-    </div>
 {% endblock %}
 
 {% block main_body %}
-    <div class="section">
-        <div class="blog-box">
-            <h1 class="blog-box-heading">{{ blog.title }}</h1>
-            <div class="blog-box-author-and-date">
-                <p class="blog-box-author">{{ blog.author }}</p>
-                <p class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
-            </div>
-            <ul class="blog-box-tags">
-                {% for tag in blog.blogtag_set.all %}
-                    <li class="blog-box-tag">{{ tag.tag }}</li>
-                    <li class="blog-box-tag-divider">/</li>
-                {% endfor %}
-            </ul>
-            <div class="blog-box-summary">{{ blog.content|safe }}</div>
+    <div itemscope itemtype="https://schema.org/CreativeWork">
+        <div class="carousel">
+            {% if blog.img_url == '#' %}
+                <amp-img itemprop="image" src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400"
+                         height="300"
+                         layout="responsive">>
+                </amp-img>
+            {% else %}
+                <amp-img itemprop="image" src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}" width="400" height="300"
+                         layout="responsive">>
+                </amp-img>
+            {% endif %}
         </div>
-    </div>
 
-    <div class="section">
-        <hr>
-        <div class="share-div">
-            Share on
-            <ul class="share">
-                <li class="share-link">{% post_to_facebook request.path 'Facebook' %}</li>
-                <li class="share-link">{% post_to_twitter blog.title request.path 'Twitter' %}</li>
-                <li class="share-link">{% post_to_linkedin blog.title request.path 'LinkedIn' %}</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="comment-box" id="comments-section">
-            <h6 class="comment-heading">Comments Section</h6>
-            <form action-xhr="//blog.adurcup.com/blogs/{{ blog.id }}/comment/" method="POST"
-                  id="comment_form" target="_top">
-                {% csrf_token %}
-                <textarea class="comment-input" name="message" form="comment_form"
-                          placeholder="Enter your comment here"></textarea>
-                <input class="comment-input" type="text" name="name" placeholder="Name">
-                <input class="comment-input" type="email" name="email" placeholder="Email">
-                <button class="comment-submit">SUBMIT</button>
-            </form>
-        </div>
-    </div>
-
-    {% if blog.comment_set.all %}
         <div class="section">
-            <div class="comment-box">
-                {% for comment in blog.comment_set.all reversed %}
-                    <div class="comment">
-                        <div class="comment-name-time">
-                            <h5 class="comment-name">{{ comment.name }}</h5>
-                            <p class="comment-time">{{ comment.created_at|date:"d M o \a\t H:i" }}</p>
-                        </div>
-                        <p class="comment-comment">{{ comment.comment }}</p>
-                    </div>
-                {% endfor %}
+            <div class="blog-box">
+                <h1 itemprop="headline" class="blog-box-heading">{{ blog.title }}</h1>
+                <div class="blog-box-author-and-date">
+                    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <p itemprop="name" class="blog-box-author">{{ blog.author }}</p>
+                    </span>
+                    <p itemprop="datePublished" content="{{ blog.created_at|date:"o-m-d\TH:i" }}" class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
+                </div>
+                <ul class="blog-box-tags">
+                    {% for tag in blog.blogtag_set.all %}
+                        <li class="blog-box-tag">{{ tag.tag }}</li>
+                        <li class="blog-box-tag-divider">/</li>
+                    {% endfor %}
+                </ul>
+                <div itemprop="text" class="blog-box-summary">{{ blog.content|safe }}</div>
             </div>
         </div>
-    {% endif %}
+
+        <div class="section">
+            <hr>
+            <div class="share-div">
+                Share on
+                <ul class="share">
+                    <li class="share-link">{% post_to_facebook request.path 'Facebook' %}</li>
+                    <li class="share-link">{% post_to_twitter blog.title request.path 'Twitter' %}</li>
+                    <li class="share-link">{% post_to_linkedin blog.title request.path 'LinkedIn' %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="comment-box" id="comments-section">
+                <h6 class="comment-heading">Comments Section</h6>
+                <form action-xhr="//blog.adurcup.com/blogs/{{ blog.id }}/comment/" method="POST"
+                      id="comment_form" target="_top">
+                    {% csrf_token %}
+                    <textarea class="comment-input" name="message" form="comment_form"
+                              placeholder="Enter your comment here"></textarea>
+                    <input class="comment-input" type="text" name="name" placeholder="Name">
+                    <input class="comment-input" type="email" name="email" placeholder="Email">
+                    <button class="comment-submit">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+
+        {% if blog.comment_set.all %}
+            <div class="section">
+                <div class="comment-box">
+                    {% for comment in blog.comment_set.all reversed %}
+                        <div class="comment">
+                            <div class="comment-name-time">
+                                <h5 class="comment-name">{{ comment.name }}</h5>
+                                <p class="comment-time">{{ comment.created_at|date:"d M o \a\t H:i" }}</p>
+                            </div>
+                            <p class="comment-comment">{{ comment.comment }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block videos %}

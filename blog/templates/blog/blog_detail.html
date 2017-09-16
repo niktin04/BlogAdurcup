@@ -5,13 +5,23 @@
 {% block title %}Adurcup Blog : {{ blog.title }}{% endblock %}
 
 {% block load_meta_files %}
-    <meta property="og:url"
-          content="{{ request.build_absolute_uri }}"/>
     <meta property="og:type" content="article"/>
     <meta property="og:title" content="{{ blog.title }}"/>
-    <meta property="og:description" content="{{ blog.summary }}"/>
-    <meta property="og:image"
-          content="{{ blog.img_url }}"/>
+    <meta property="og:url"
+          content="{{ request.build_absolute_uri }}"/>
+    <meta property="og:description" content="{{ blog.summary | truncatewords:28 }}"/>
+    <meta property="og:image" content="{{ blog.img_url }}"/>
+    <meta property="og:site_name" content="Adurcup Blog"/>
+    <meta property="article:published_time" content="{{ blog.created_at|date:"o-m-d\TH:i:sO" }}"/>
+    <meta property="article:modified_time" content="{{ blog.created_at|date:"o-m-d\TH:i:sO" }}"/>
+    <meta property="article:section" content="Blogs"/>
+    <meta property="og:locale" content="en_IN"/>
+    {% for tag in blog.blogtag_set.all %}
+    <meta property="article:tag" content="{{ tag.tag }}"/>{% endfor %}
+
+    <meta name="twitter:site" content="@Adurcup"/>
+    <meta name="twitter:image" content="{{ blog.img_url }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
 {% endblock %}
 
 {% block load_files %}
@@ -20,15 +30,15 @@
 {% endblock %}
 
 {% block nav_active %}
-    <li><a href="{% url 'home:home' %}">Home</a></li>
-    <li><a href="{% url 'blog:blogs' %}">Blogs</a></li>
-    <li><a href="{% url 'delight:delights' %}">Delights</a></li>
-    <li><a href="{% url 'newsmail:newsmails' %}">NewsMails</a></li>
-    <li><a href="{% url 'video:videos' %}">Videos</a></li>
+    <li><a href="{% url 'home:home' %}" itemprop="url"><span itemprop="name">Home</span></a></li>
+    <li><a href="{% url 'blog:blogs' %}" itemprop="url"><span itemprop="name">Blogs</span></a></li>
+    <li><a href="{% url 'delight:delights' %}" itemprop="url"><span itemprop="name">Delights</span></a></li>
+    <li><a href="{% url 'newsmail:newsmails' %}" itemprop="url"><span itemprop="name">NewsMails</span></a></li>
+    <li><a href="{% url 'video:videos' %}" itemprop="url"><span itemprop="name">Videos</span></a></li>
 {% endblock %}
 
 {% block main_body %}
-    <div itemscope itemtype="http://schema.org/Article">
+    <div itemscope itemtype="https://schema.org/CreativeWork">
         <div class="jumbotron niktin-jumbotron">
             {% if blog.img_url == '#' %}
                 <img itemprop="image" class="lazy" data-src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
@@ -41,7 +51,7 @@
         <div class="niktin-main-content">
             <!-- Example row of columns -->
             <div class="niktin-blog">
-                <h1 itemprop="name" class="niktin-main-title">{{ blog.title }}</h1>
+                <h1 itemprop="headline" class="niktin-main-title">{{ blog.title }}</h1>
                 <div class="niktin-main-credentials">
                     <span itemprop="author" itemscope itemtype="http://schema.org/Person">
                     <p itemprop="name" class="niktin-main-credentials-author">{{ blog.author }}</p>
@@ -52,12 +62,12 @@
                 <div class="niktin-main-tags">
                     <ul>
                         {% for tag in blog.blogtag_set.all %}
-                            <li itemprop="articleSection">{{ tag.tag }}</li>
+                            <li>{{ tag.tag }}</li>
                             <li class="niktin-blog-tags-divider"> /</li>
                         {% endfor %}
                     </ul>
                 </div>
-                <div itemprop="articleBody" class="niktin-main-description">{{ blog.content|safe }}</div>
+                <div itemprop="text" class="niktin-main-description">{{ blog.content|safe }}</div>
             </div>
             <hr>
             <div class="social-share">

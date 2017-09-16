@@ -45,10 +45,21 @@
     <!-- End Google Tag Manager -->
 
     {% block load_meta_files %}
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <meta name="robots" content=""/>
+        <meta name="description"
+              content="A knowledge bank for food service industry. Helping Restaurants, Hotels and Cafes to grow via providing industry specific information while helping them in their procurement and in getting services.">
         <meta name="author" content="Nitin Prakash">
+        <meta itemprop="name" content="Adurcup Blog"/>
+        <meta itemprop="url" content="{{ request.build_absolute_uri }}"/>
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Adurcup Blog"/>
+        <meta property="og:url"
+              content="{{ request.build_absolute_uri }}"/>
+        <meta property="og:description" content="A knowledge bank for food service industry. Helping Restaurants, Hotels and Cafes to grow via providing industry specific information while helping them in their procurement and in getting services."/>
+        <meta property="og:site_name" content="Adurcup Blog"/>
+        <meta property="og:locale" content="en_IN"/>
+
+        <meta name="twitter:site" content="@Adurcup"/>
     {% endblock %}
 
     <title>{% block title %}Adurcup Blog : Educating Restaurants{% endblock %}</title>
@@ -62,14 +73,15 @@
     {% endblock %}
 </head>
 
-<body>
+<body itemscope itemtype="https://schema.org/WebPage">
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXQG49V"
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
-<nav class="navbar navbar-inverse navbar-fixed-top">
+
+<nav class="navbar navbar-inverse navbar-fixed-top" itemscope itemtype="https://schema.org/SiteNavigationElement">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -84,11 +96,14 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 {% block nav_active %}
-                    <li class="active"><a href="{% url 'home:home' %}">Home</a></li>
-                    <li><a href="{% url 'blog:blogs' %}">Blogs</a></li>
-                    <li><a href="{% url 'delight:delights' %}">Delights</a></li>
-                    <li><a href="{% url 'newsmail:newsmails' %}">NewsMails</a></li>
-                    <li><a href="{% url 'video:videos' %}">Videos</a></li>
+                    <li class="active"><a href="{% url 'home:home' %}" itemprop="url"><span itemprop="name">Home</span></a>
+                    </li>
+                    <li><a href="{% url 'blog:blogs' %}" itemprop="url"><span itemprop="name">Blogs</span></a></li>
+                    <li><a href="{% url 'delight:delights' %}" itemprop="url"><span itemprop="name">Delights</span></a>
+                    </li>
+                    <li><a href="{% url 'newsmail:newsmails' %}" itemprop="url"><span
+                            itemprop="name">NewsMails</span></a></li>
+                    <li><a href="{% url 'video:videos' %}" itemprop="url"><span itemprop="name">Videos</span></a></li>
                 {% endblock %}
             </ul>
         </div>

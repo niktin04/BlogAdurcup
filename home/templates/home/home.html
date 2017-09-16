@@ -33,20 +33,20 @@
                 <section>
                     <h3 class="niktin-main-heading">LATEST BLOGS</h3>
                     {% for blog in blogs %}
-                        <article itemscope itemtype="http://schema.org/Article">
+                        <article itemscope itemtype="https://schema.org/CreativeWork">
                             <a itemprop="url" href="{% url 'blog:blog_detail' blog.id %}">
                                 <div class="col-md-6 col-sm-6 niktin-blog">
                                     <div class="niktin-blog-image">
                                         {% if blog.img_url == '#' %}
-                                            <img class="lazy" itemprop="image"
+                                            <img itemprop="image" class="lazy" itemprop="image"
                                                  data-src="{% static 'home/images/bg.jpg' %}"
                                                  alt="Plastic Packaging">
                                         {% else %}
-                                            <img class="lazy" itemprop="image" data-src="{{ blog.img_url }}"
+                                            <img itemprop="image" class="lazy" itemprop="image" data-src="{{ blog.img_url }}"
                                                  alt="{{ blog.img_alt_tag }}">
                                         {% endif %}
                                     </div>
-                                    <h1 itemprop="name" class="niktin-blog-title">{{ blog.title }}</h1>
+                                    <h1 itemprop="headline" class="niktin-blog-title">{{ blog.title }}</h1>
                                     <div class="niktin-blog-credentials">
                                         <span itemprop="author" itemscope itemtype="http://schema.org/Person">
                                         <p itemprop="name" class="niktin-blog-credentials-author">{{ blog.author }}</p>
@@ -57,17 +57,17 @@
                                     <div class="niktin-blog-tags">
                                         <ul>
                                             {% for tag in blog.blogtag_set.all %}
-                                                <li itemprop="articleSection">{{ tag.tag }}</li>
+                                                <li>{{ tag.tag }}</li>
                                                 <li class="niktin-blog-tags-divider"> /</li>
                                             {% endfor %}
                                         </ul>
                                     </div>
                                     {% if blog.summary == '#' %}
-                                        <span itemprop="articleBody">
+                                        <span itemprop="text">
                                         <div class="niktin-blog-description">{{ blog.content|safe }}</div>
                                         </span>
                                     {% else %}
-                                        <span itemprop="articleBody">
+                                        <span itemprop="text">
                                         <div class="niktin-blog-description">{{ blog.summary }}</div>
                                         </span>
                                     {% endif %}

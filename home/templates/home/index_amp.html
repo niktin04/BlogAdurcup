@@ -16,6 +16,22 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 
     {% block load_meta_content %}
+        <meta name="description"
+              content="A knowledge bank for food service industry. Helping Restaurants, Hotels and Cafes to grow via providing industry specific information while helping them in their procurement and in getting services.">
+        <meta name="author" content="Nitin Prakash">
+        <meta itemprop="name" content="Adurcup Blog"/>
+        <meta itemprop="url" content="{{ request.build_absolute_uri }}"/>
+
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Adurcup Blog"/>
+        <meta property="og:url"
+              content="{{ request.build_absolute_uri }}"/>
+        <meta property="og:description"
+              content="A knowledge bank for food service industry. Helping Restaurants, Hotels and Cafes to grow via providing industry specific information while helping them in their procurement and in getting services."/>
+        <meta property="og:site_name" content="Adurcup Blog"/>
+        <meta property="og:locale" content="en_IN"/>
+
+        <meta name="twitter:site" content="@Adurcup"/>
     {% endblock %}
 
     {% block load_top_scripts %}
@@ -486,17 +502,17 @@
 </noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<amp-sidebar id="sidebar" layout="nodisplay" side="left">
+<amp-sidebar id="sidebar" layout="nodisplay" side="left" itemscope itemtype="https://schema.org/SiteNavigationElement">
     <amp-img class="amp-close-image" src="{% static 'home/images/ic_close_white_18dp_2x.png' %}" width="20" height="20"
              alt="close sidebar"
              on="tap:sidebar.close" role="button" tabindex="0"></amp-img>
     <ul>
         {% block navigation_links %}
-            <li class="sidebar-link active"><a href="{% url 'home_amp' %}">Home</a></li>
-            <li class="sidebar-link"><a href="{% url 'blogs_amp' %}">Blogs</a></li>
-            <li class="sidebar-link"><a href="{% url 'delights_amp' %}">Delights</a></li>
-            <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}">NewsMails</a></li>
-            <li class="sidebar-link"><a href="{% url 'videos_amp' %}">Videos</a></li>
+            <li class="sidebar-link active"><a href="{% url 'home_amp' %}" itemprop="url"><span itemprop="name">Home</span></a></li>
+            <li class="sidebar-link"><a href="{% url 'blogs_amp' %}" itemprop="url"><span itemprop="name">Blogs</span></a></li>
+            <li class="sidebar-link"><a href="{% url 'delights_amp' %}" itemprop="url"><span itemprop="name">Delights</span></a></li>
+            <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}" itemprop="url"><span itemprop="name">NewsMails</span></a></li>
+            <li class="sidebar-link"><a href="{% url 'videos_amp' %}" itemprop="url"><span itemprop="name">Videos</span></a></li>
         {% endblock %}
     </ul>
 </amp-sidebar>
@@ -540,38 +556,42 @@
     <div class="section">
         <p class="section-heading">LATEST BLOGS</p>
         {% for blog in blogs %}
-            <a href="{% url 'blog_detail_amp' blog.id %}">
-                <div class="blog-box">
-                    <div class="blog-box-image-box">
-                        {% if blog.img_url == '#' %}
-                            <amp-img src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400"
-                                     height="300"
-                                     layout="responsive">>
-                            </amp-img>
+            <article itemscope itemtype="https://schema.org/CreativeWork">
+                <a itemprop="url" href="{% url 'blog_detail_amp' blog.id %}">
+                    <div class="blog-box">
+                        <div class="blog-box-image-box">
+                            {% if blog.img_url == '#' %}
+                                <amp-img itemprop="image" src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400"
+                                         height="300"
+                                         layout="responsive">>
+                                </amp-img>
+                            {% else %}
+                                <amp-img itemprop="image" src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}" width="400" height="300"
+                                         layout="responsive">>
+                                </amp-img>
+                            {% endif %}
+                        </div>
+                        <h1 itemprop="headline" class="blog-box-heading">{{ blog.title }}</h1>
+                        <div class="blog-box-author-and-date">
+                            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                            <p itemprop="name" class="blog-box-author">{{ blog.author }}</p>
+                            </span>
+                            <p itemprop="datePublished" content="{{ blog.created_at|date:"o-m-d\TH:i" }}" class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
+                        </div>
+                        <ul class="blog-box-tags">
+                            {% for tag in blog.blogtag_set.all %}
+                                <li class="blog-box-tag">{{ tag.tag }}</li>
+                                <li class="blog-box-tag-divider">/</li>
+                            {% endfor %}
+                        </ul>
+                        {% if blog.summary == '#' %}
+                            <p itemprop="text" class="blog-box-summary">{{ blog.content|safe }}</p>
                         {% else %}
-                            <amp-img src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}" width="400" height="300"
-                                     layout="responsive">>
-                            </amp-img>
+                            <p itemprop="text" class="blog-box-summary">{{ blog.summary }}</p>
                         {% endif %}
                     </div>
-                    <h1 class="blog-box-heading">{{ blog.title }}</h1>
-                    <div class="blog-box-author-and-date">
-                        <p class="blog-box-author">{{ blog.author }}</p>
-                        <p class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
-                    </div>
-                    <ul class="blog-box-tags">
-                        {% for tag in blog.blogtag_set.all %}
-                            <li class="blog-box-tag">{{ tag.tag }}</li>
-                            <li class="blog-box-tag-divider">/</li>
-                        {% endfor %}
-                    </ul>
-                    {% if blog.summary == '#' %}
-                        <p class="blog-box-summary">{{ blog.content|safe }}</p>
-                    {% else %}
-                        <p class="blog-box-summary">{{ blog.summary }}</p>
-                    {% endif %}
-                </div>
-            </a>
+                </a>
+            </article>
         {% endfor %}
 
         {% if blog_exceed %}

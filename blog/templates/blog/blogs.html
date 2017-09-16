@@ -8,12 +8,31 @@
     <link href="{% static 'blog/blogs.css' %}" rel="stylesheet">
 {% endblock %}
 
+{% block load_meta_files %}
+    <meta name="description"
+          content="A knowledge bank for food service industry. Helping Restaurants, Hotels and Cafes to grow via providing industry specific information while helping them in their procurement and in getting services.">
+    <meta name="author" content="Nitin Prakash">
+    <meta itemprop="name" content="Adurcup Blog"/>
+    <meta itemprop="url" content="{{ request.build_absolute_uri }}"/>
+
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Adurcup Blog"/>
+    <meta property="og:url"
+          content="{{ request.build_absolute_uri }}"/>
+    <meta property="og:description" content="A knowledge bank for food service industry. Helping Restaurants, Hotels and Cafes to grow via providing industry specific information while helping them in their procurement and in getting services."/>
+    <meta property="og:site_name" content="Adurcup Blog"/>
+    <meta property="og:locale" content="en_IN"/>
+
+    <meta name="twitter:site" content="@Adurcup"/>
+{% endblock %}
+
+
 {% block nav_active %}
     <li><a href="{% url 'home:home' %}">Home</a></li>
-    <li class="active"><a href="{% url 'blog:blogs' %}">Blogs</a></li>
-    <li><a href="{% url 'delight:delights' %}">Delights</a></li>
-    <li><a href="{% url 'newsmail:newsmails' %}">NewsMails</a></li>
-    <li><a href="{% url 'video:videos' %}">Videos</a></li>
+    <li class="active"><a href="{% url 'blog:blogs' %}" itemprop="url"><span itemprop="name">Blogs</span></a></li>
+    <li><a href="{% url 'delight:delights' %}" itemprop="url"><span itemprop="name">Delights</span></a></li>
+    <li><a href="{% url 'newsmail:newsmails' %}" itemprop="url"><span itemprop="name">NewsMails</span></a></li>
+    <li><a href="{% url 'video:videos' %}" itemprop="url"><span itemprop="name">Videos</span></a></li>
 {% endblock %}
 
 {% block main_body %}
@@ -25,19 +44,21 @@
                     <div class="niktin-main-heading">ADURCUP BLOGS</div>
 
                     {% for blog in blogs %}
-                        <article itemscope itemtype="http://schema.org/Article">
+                        <article itemscope itemtype="https://schema.org/CreativeWork">
                             <a itemprop="url" href="{% url 'blog:blog_detail' blog.id %}">
                                 <div class="col-md-12 col-sm-12 niktin-blog">
                                     <div class="col-md-4 col-sm-4 niktin-blog-image">
                                         {% if blog.img_url == '#' %}
-                                            <img itemprop="image" class="lazy" data-src="{% static 'home/images/bg.jpg' %}"
+                                            <img itemprop="image" class="lazy"
+                                                 data-src="{% static 'home/images/bg.jpg' %}"
                                                  alt="Plastic Packaging">
                                         {% else %}
-                                            <img itemprop="image" class="lazy" data-src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}">
+                                            <img itemprop="image" class="lazy" data-src="{{ blog.img_url }}"
+                                                 alt="{{ blog.img_alt_tag }}">
                                         {% endif %}
                                     </div>
                                     <div class="col-md-8 col-sm-8 niktin-blog-division">
-                                        <h1 itemprop="name" class="niktin-blog-title">{{ blog.title }}</h1>
+                                        <h1 itemprop="headline" class="niktin-blog-title">{{ blog.title }}</h1>
                                         <div class="niktin-blog-credentials">
                                         <span itemprop="author" itemscope itemtype="http://schema.org/Person">
                                         <p itemprop="name" class="niktin-blog-credentials-author">{{ blog.author }}</p>
@@ -49,17 +70,17 @@
                                         <div class="niktin-blog-tags">
                                             <ul>
                                                 {% for tag in blog.blogtag_set.all %}
-                                                    <li itemprop="articleSection">{{ tag.tag }}</li>
+                                                    <li>{{ tag.tag }}</li>
                                                     <li class="niktin-blog-tags-divider"> /</li>
                                                 {% endfor %}
                                             </ul>
                                         </div>
                                         {% if blog.summary == '#' %}
-                                            <span itemprop="articleBody">
+                                            <span itemprop="text">
                                         <div class="niktin-blog-description">{{ blog.content|safe }}</div>
                                         </span>
                                         {% else %}
-                                            <span itemprop="articleBody">
+                                            <span itemprop="text">
                                         <div class="niktin-blog-description">{{ blog.summary }}</div>
                                         </span>
                                         {% endif %}
@@ -168,9 +189,11 @@
                         <div class="col-md-12 col-sm-6 col-xs-12 niktin-side">
                             <div class="col-md-4 col-xs-3 niktin-side-newsmail">
                                 {% if newsmail.img_url == '#' %}
-                                    <img class="lazy" data-src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging">
+                                    <img class="lazy" data-src="{% static 'home/images/bg.jpg' %}"
+                                         alt="Plastic Packaging">
                                 {% else %}
-                                    <img class="lazy" data-src="{{ newsmail.img_url }}" alt="{{ newsmail.img_alt_tag }}">
+                                    <img class="lazy" data-src="{{ newsmail.img_url }}"
+                                         alt="{{ newsmail.img_alt_tag }}">
                                 {% endif %}
                                 <div class="niktin-side-newsmail-mask"></div>
                                 <div class="niktin-side-newsmail-inline">
