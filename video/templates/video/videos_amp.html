@@ -5,14 +5,11 @@
 {% endblock %}
 
 {% block amp_page_link %}
+    <link rel="canonical" href="{{ amp_url }}">
 {% endblock %}
 
 {% block load_top_scripts %}
     <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
-{% endblock %}
-
-{% block custom_amp_style %}
-    <link rel="canonical" href="{{ amp_url }}">
 {% endblock %}
 
 {% block navigation_links %}
