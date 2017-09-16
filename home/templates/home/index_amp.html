@@ -2,6 +2,8 @@
 <html ⚡>
 <head>
     <meta charset="utf-8">
+    <script async custom-element="amp-analytics"
+            src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     <script async src="https://cdn.ampproject.org/v0.js"></script>
 
     {% load staticfiles %}
@@ -37,99 +39,7 @@
     {% block load_top_scripts %}
     {% endblock %}
 
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-105747188-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start':
-                new Date().getTime(), event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-WXQG49V');</script>
-    <!-- End Google Tag Manager -->
-
-    <style amp-boilerplate>body {
-        -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-        -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-        -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-        animation: -amp-start 8s steps(1, end) 0s 1 normal both
-    }
-
-    @-webkit-keyframes -amp-start {
-        from {
-            visibility: hidden
-        }
-        to {
-            visibility: visible
-        }
-    }
-
-    @-moz-keyframes -amp-start {
-        from {
-            visibility: hidden
-        }
-        to {
-            visibility: visible
-        }
-    }
-
-    @-ms-keyframes -amp-start {
-        from {
-            visibility: hidden
-        }
-        to {
-            visibility: visible
-        }
-    }
-
-    @-o-keyframes -amp-start {
-        from {
-            visibility: hidden
-        }
-        to {
-            visibility: visible
-        }
-    }
-
-    @keyframes -amp-start {
-        from {
-            visibility: hidden
-        }
-        to {
-            visibility: visible
-        }
-    }</style>
-    <noscript>
-        <style amp-boilerplate>body {
-            -webkit-animation: none;
-            -moz-animation: none;
-            -ms-animation: none;
-            animation: none
-        }</style>
-    </noscript>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
     <style amp-custom>
         body {
@@ -495,12 +405,21 @@
 </head>
 
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WXQG49V"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
+<amp-analytics type="googleanalytics">
+    <script type="application/json">
+        {
+          "vars": {
+            "account": "UA-105747188-1"
+          },
+          "triggers": {
+            "trackPageview": {
+              "on": "visible",
+              "request": "pageview"
+            }
+          }
+        }
+    </script>
+</amp-analytics>
 
 <amp-sidebar id="sidebar" layout="nodisplay" side="left" itemscope itemtype="https://schema.org/SiteNavigationElement">
     <amp-img class="amp-close-image" src="{% static 'home/images/ic_close_white_18dp_2x.png' %}" width="20" height="20"
@@ -508,11 +427,16 @@
              on="tap:sidebar.close" role="button" tabindex="0"></amp-img>
     <ul>
         {% block navigation_links %}
-            <li class="sidebar-link active"><a href="{% url 'home_amp' %}" itemprop="url"><span itemprop="name">Home</span></a></li>
-            <li class="sidebar-link"><a href="{% url 'blogs_amp' %}" itemprop="url"><span itemprop="name">Blogs</span></a></li>
-            <li class="sidebar-link"><a href="{% url 'delights_amp' %}" itemprop="url"><span itemprop="name">Delights</span></a></li>
-            <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}" itemprop="url"><span itemprop="name">NewsMails</span></a></li>
-            <li class="sidebar-link"><a href="{% url 'videos_amp' %}" itemprop="url"><span itemprop="name">Videos</span></a></li>
+            <li class="sidebar-link active"><a href="{% url 'home_amp' %}" itemprop="url"><span
+                    itemprop="name">Home</span></a></li>
+            <li class="sidebar-link"><a href="{% url 'blogs_amp' %}" itemprop="url"><span
+                    itemprop="name">Blogs</span></a></li>
+            <li class="sidebar-link"><a href="{% url 'delights_amp' %}" itemprop="url"><span
+                    itemprop="name">Delights</span></a></li>
+            <li class="sidebar-link"><a href="{% url 'newsmails_amp' %}" itemprop="url"><span
+                    itemprop="name">NewsMails</span></a></li>
+            <li class="sidebar-link"><a href="{% url 'videos_amp' %}" itemprop="url"><span itemprop="name">Videos</span></a>
+            </li>
         {% endblock %}
     </ul>
 </amp-sidebar>
@@ -561,12 +485,14 @@
                     <div class="blog-box">
                         <div class="blog-box-image-box">
                             {% if blog.img_url == '#' %}
-                                <amp-img itemprop="image" src="{% static 'home/images/bg.jpg' %}" alt="Plastic Packaging" width="400"
+                                <amp-img itemprop="image" src="{% static 'home/images/bg.jpg' %}"
+                                         alt="Plastic Packaging" width="400"
                                          height="300"
                                          layout="responsive">>
                                 </amp-img>
                             {% else %}
-                                <amp-img itemprop="image" src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}" width="400" height="300"
+                                <amp-img itemprop="image" src="{{ blog.img_url }}" alt="{{ blog.img_alt_tag }}"
+                                         width="400" height="300"
                                          layout="responsive">>
                                 </amp-img>
                             {% endif %}
@@ -576,7 +502,8 @@
                             <span itemprop="author" itemscope itemtype="http://schema.org/Person">
                             <p itemprop="name" class="blog-box-author">{{ blog.author }}</p>
                             </span>
-                            <p itemprop="datePublished" content="{{ blog.created_at|date:"o-m-d\TH:i" }}" class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
+                            <p itemprop="datePublished" content="{{ blog.created_at|date:"o-m-d\TH:i" }}"
+                               class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
                         </div>
                         <ul class="blog-box-tags">
                             {% for tag in blog.blogtag_set.all %}
