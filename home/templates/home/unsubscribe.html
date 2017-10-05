@@ -1,0 +1,35 @@
+{% extends 'home/index.html' %}
+{% load staticfiles %}
+
+{% block load_files %}
+    <link href="{% static 'home/home.css' %}" rel="stylesheet" xmlns="http://www.w3.org/1999/html"
+          xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+
+{% block main_body %}
+
+    <div class="niktin-main-content">
+        <div class="col-md-12">
+            <div class="col-md-12 col-sm-6 niktin-main" id="subscribe">
+                <section>
+                    <h3 class="niktin-main-heading">UNSUBSCRIBE FROM ADURCUP</h3>
+                    <form class="input-group niktin-subscribe" action="{% url 'unsubscribe_email' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="email" class="form-control" placeholder="Enter your registered email here" name="email"
+                               required>
+                        <span class="input-group-btn">
+						<button class="btn btn-default niktin-subscribe-button" type="submit" value="UNSUBSCRIBE">UNSUBSCRIBE</button>
+					</span>
+                    </form>
+                    <div class="col-md-12 subscribe-success-message">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

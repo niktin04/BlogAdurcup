@@ -25,3 +25,10 @@ class Subscribe(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Unsubscribe(models.Model):
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.email

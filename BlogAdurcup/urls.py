@@ -20,15 +20,22 @@ import blog.views as blog_views
 import delight.views as delights_views
 import newsmail.views as newsmail_views
 import video.views as video_views
-from django.http import HttpResponse
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import BlogSitemap
 
 app_name = 'BlogAdurcup'
+
+sitemaps = {
+    'blogSitemaps': BlogSitemap()
+}
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', home_views.home, name='home'),
     url(r'^subscribe/$', home_views.subscribe, name='subscribe'),
+    url(r'^unsubscribe/$', home_views.unsubscribe, name='unsubscribe'),
+    url(r'^unsubscribe-email/$', home_views.unsubscribe_email, name='unsubscribe_email'),
 
     url(r'^home/', include('home.urls')),
     url(r'^blogs/', include('blog.urls')),
@@ -47,6 +54,9 @@ urlpatterns = [
     url(r'^amp/videos/$', video_views.videos_amp, name='videos_amp'),
 
     # ROBOTS.TXT FILE CONFIG TO ALLOW ALL CRAWLERS AND ALL PAGES
-    url(r'^robots.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"),
-        name="robots_file")
+    # url(r'^robots\.txt', lambda x: HttpResponse("User-Agent: *\nDisallow:", content_type="text/plain"),
+    #     name="robots_file")
+    url(r'^sitemap\.xml', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^robots\.txt', include('robots.urls')),
 ]

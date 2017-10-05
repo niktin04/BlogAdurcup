@@ -1,7 +1,5 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.template import RequestContext
-from .models import Welcome, Quote, Subscribe
+from .models import Welcome, Quote, Subscribe, Unsubscribe
 from blog.models import Blog
 from delight.models import Delight
 from newsmail.models import NewsMail
@@ -70,6 +68,11 @@ def home_amp(request):
     return render(request, 'home/home_amp.html', context)
 
 
+def unsubscribe(request):
+
+    return render(request, 'home/unsubscribe.html')
+
+
 def subscribe(request):
     email = request.POST['email']
 
@@ -81,3 +84,21 @@ def subscribe(request):
         messages.info(request, 'Enter a valid email address.')
 
     return redirect(request.META.get('HTTP_REFERER') + '#subscribe')
+
+
+def unsubscribe_email(request):
+    email = request.POST['email']
+
+    if len(email):
+        if Subscribe.objects.filter(email=email):
+            unsubs_obj = Unsubscribe(email=email)
+            unsubs_obj.save()
+            Subscribe.objects.filter(email=email).delete()
+            messages.success(request, 'Email successfully unsubscribed.')
+            return redirect('http://blog.adurcup.com/')
+        else:
+            messages.info(request, 'Enter a registered email address.')
+    else:
+        messages.info(request, 'Enter a valid email address.')
+
+    return redirect(request.META.get('HTTP_REFERER'))
