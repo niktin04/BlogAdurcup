@@ -160,17 +160,17 @@
             </div>
         </div>
 
-        <div class="section">
-            <hr>
-            <div class="share-div">
-                Share on
-                <ul class="share">
-                    <li class="share-link">{% post_to_facebook request.path 'Facebook' %}</li>
-                    <li class="share-link">{% post_to_twitter blog.title request.path 'Twitter' %}</li>
-                    <li class="share-link">{% post_to_linkedin blog.title request.path 'LinkedIn' %}</li>
-                </ul>
-            </div>
-        </div>
+{#        <div class="section"> #}
+{#            <hr> #}
+{#            <div class="share-div"> #}
+{#                Share on #}
+{#                <ul class="share"> #}
+{#                    <li class="share-link">{% post_to_facebook_amp request.path 'Facebook' %}</li> #}
+{#                    <li class="share-link">{% post_to_twitter_amp blog.title request.path 'Twitter' %}</li> #}
+{#                    <li class="share-link">{% post_to_linkedin_amp blog.title request.path 'LinkedIn' %}</li> #}
+{#                </ul> #}
+{#            </div> #}
+{#        </div> #}
 
         <div class="section">
             <div class="comment-box" id="comments-section">
@@ -178,7 +178,7 @@
                 <form action-xhr="//blog.adurcup.com/blogs/{{ blog.id }}/comment/" method="POST"
                       id="comment_form" target="_top">
                     {% csrf_token %}
-                    <textarea class="comment-input" name="message" form="comment_form"
+                    <textarea class="comment-input" name="message"
                               placeholder="Enter your comment here"></textarea>
                     <input class="comment-input" type="text" name="name" placeholder="Name">
                     <input class="comment-input" type="email" name="email" placeholder="Email">
