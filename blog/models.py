@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from ckeditor.fields import RichTextField
+from django.contrib.sitemaps import ping_google
 
 
 # Create your models here.
@@ -22,6 +23,16 @@ class Blog(models.Model):
         if not self.id:
             self.published_at = datetime.now()
         self.updated_at = datetime.now()
+
+        super(Blog, self).save(*args, **kwargs)
+
+        try:
+            ping_google('http://blog.adurcup.com/sitemap.xml')
+        except Exception:
+            # Bare 'except' because we could get a variety
+            # of HTTP-related exceptions.
+            pass
+
         return super(Blog, self).save(*args, **kwargs)
 
 
