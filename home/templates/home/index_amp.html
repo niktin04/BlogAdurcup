@@ -502,8 +502,8 @@
                             <span itemprop="author" itemscope itemtype="http://schema.org/Person">
                             <p itemprop="name" class="blog-box-author">{{ blog.author }}</p>
                             </span>
-                            <p itemprop="datePublished" content="{{ blog.created_at|date:"o-m-d\TH:i" }}"
-                               class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
+                            <p itemprop="datePublished" content="{{ blog.updated_at|date:"o-m-d\TH:i" }}"
+                               class="blog-box-date">{{ blog.updated_at|date:"d M o, H:i" }}</p>
                         </div>
                         <ul class="blog-box-tags">
                             {% for tag in blog.blogtag_set.all %}

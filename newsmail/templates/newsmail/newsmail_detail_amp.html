@@ -27,7 +27,7 @@
             <h1 class="blog-box-heading">{{ newsmail.title }}</h1>
             <div class="blog-box-author-and-date">
                 <p class="blog-box-author">{{ newsmail.author }}</p>
-                <p class="blog-box-date">{{ newsmail.created_at|date:"d M o, H:i" }}</p>
+                <p class="blog-box-date">{{ newsmail.updated_at|date:"d M o, H:i" }}</p>
             </div>
             <ul class="blog-box-tags">
                 {% for tag in newsmail.newsmailtag_set.all %}

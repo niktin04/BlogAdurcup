@@ -11,10 +11,18 @@ class Blog(models.Model):
     content = RichTextField()
     img_url = models.CharField(max_length=1000, default='#')
     img_alt_tag = models.CharField(max_length=500, default="Plastic Packaging")
-    created_at = models.DateTimeField(default=datetime.now)
+    published_at = models.DateTimeField(editable=False)
+    updated_at = models.DateTimeField(editable=False)
 
     def __str__(self):
-        return self.title
+        return self.published_at.strftime("%d-%m-%Y %H:%M") + ' --- ' + self.title + ' --- ' + self.updated_at.strftime(
+            "%d-%m-%Y %H:%M")
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.published_at = datetime.now()
+        self.updated_at = datetime.now()
+        return super(Blog, self).save(*args, **kwargs)
 
 
 class BlogTag(models.Model):

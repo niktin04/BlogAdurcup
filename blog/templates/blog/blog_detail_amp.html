@@ -16,8 +16,8 @@
     <meta property="og:description" content="{{ blog.summary | truncatewords:28 }}"/>
     <meta property="og:image" content="{{ blog.img_url }}"/>
     <meta property="og:site_name" content="Adurcup Blog"/>
-    <meta property="article:published_time" content="{{ blog.created_at|date:"o-m-d\TH:i:sO" }}"/>
-    <meta property="article:modified_time" content="{{ blog.created_at|date:"o-m-d\TH:i:sO" }}"/>
+    <meta property="article:published_time" content="{{ blog.updated_at|date:"o-m-d\TH:i:sO" }}"/>
+    <meta property="article:modified_time" content="{{ blog.updated_at|date:"o-m-d\TH:i:sO" }}"/>
     <meta property="article:section" content="Blogs"/>
     <meta property="og:locale" content="en_IN"/>
     {% for tag in blog.blogtag_set.all %}
@@ -146,7 +146,7 @@
                     <span itemprop="author" itemscope itemtype="http://schema.org/Person">
                     <p itemprop="name" class="blog-box-author">{{ blog.author }}</p>
                     </span>
-                    <p itemprop="datePublished" content="{{ blog.created_at|date:"o-m-d\TH:i" }}" class="blog-box-date">{{ blog.created_at|date:"d M o, H:i" }}</p>
+                    <p itemprop="datePublished" content="{{ blog.updated_at|date:"o-m-d\TH:i" }}" class="blog-box-date">{{ blog.updated_at|date:"d M o, H:i" }}</p>
                 </div>
                 <ul class="blog-box-tags">
                     {% for tag in blog.blogtag_set.all %}
@@ -192,7 +192,7 @@
                         <div class="comment">
                             <div class="comment-name-time">
                                 <h5 class="comment-name">{{ comment.name }}</h5>
-                                <p class="comment-time">{{ comment.created_at|date:"d M o \a\t H:i" }}</p>
+                                <p class="comment-time">{{ comment.updated_at|date:"d M o \a\t H:i" }}</p>
                             </div>
                             <p class="comment-comment">{{ comment.comment }}</p>
                         </div>

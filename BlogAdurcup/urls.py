@@ -21,18 +21,28 @@ import delight.views as delights_views
 import newsmail.views as newsmail_views
 import video.views as video_views
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import BlogSitemap
+from .sitemaps import StaticViewSitemap, BlogsSitemap, BlogsAmpSitemap, DelightsSitemap, DelightsAmpSitemap, \
+    NewsmailsSitemap, NewsmailsAmpSitemap, VideosSitemap, VideosAmpSitemap
+import home.urls as home_urls
 
 app_name = 'BlogAdurcup'
 
 sitemaps = {
-    'blogSitemaps': BlogSitemap()
+    'static': StaticViewSitemap,
+    'blogSitemaps': BlogsSitemap(),
+    'blogAmpSitemap': BlogsAmpSitemap(),
+    'delightSitemaps': DelightsSitemap(),
+    'delightAmpSitemap': DelightsAmpSitemap(),
+    'newsmailSitemaps': NewsmailsSitemap(),
+    'newsmailAmpSitemap': NewsmailsAmpSitemap(),
+    'videoSitemaps': VideosSitemap(),
+    'videoAmpSitemap': VideosAmpSitemap(),
 }
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
-    url(r'^$', home_views.home, name='home'),
+    url(r'^$', home_views.home, name='index'),
     url(r'^subscribe/$', home_views.subscribe, name='subscribe'),
     url(r'^unsubscribe/$', home_views.unsubscribe, name='unsubscribe'),
     url(r'^unsubscribe-email/$', home_views.unsubscribe_email, name='unsubscribe_email'),
@@ -44,7 +54,7 @@ urlpatterns = [
     url(r'^videos/', include('video.urls')),
 
     # AMP URLS
-    url(r'^amp/$', home_views.home_amp, name='home_amp'),
+    url(r'^amp/$', home_views.home_amp, name='index_amp'),
     url(r'^amp/home/$', home_views.home_amp, name='home_amp'),
     url(r'^amp/blogs/$', blog_views.blogs_amp, name='blogs_amp'),
     url(r'^amp/blogs/(?P<blog_id>[0-9]+)/$', blog_views.blog_detail_amp, name='blog_detail_amp'),
