@@ -23,7 +23,6 @@ import video.views as video_views
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import StaticViewSitemap, BlogsSitemap, BlogsAmpSitemap, DelightsSitemap, DelightsAmpSitemap, \
     NewsmailsSitemap, NewsmailsAmpSitemap, VideosSitemap, VideosAmpSitemap
-import home.urls as home_urls
 
 app_name = 'BlogAdurcup'
 

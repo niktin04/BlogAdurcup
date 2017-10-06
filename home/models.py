@@ -21,14 +21,14 @@ class Quote(models.Model):
 
 
 class Subscribe(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
 
     def __str__(self):
         return self.email
 
 
 class Unsubscribe(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
 
     def __str__(self):
         return self.email
