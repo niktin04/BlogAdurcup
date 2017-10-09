@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5-^%3#svyow0axen12irv_x)0gz1)lw-hrn56ck6a(im@+v@%!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['52.66.147.79', 'blog.adurcup.com', '0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['52.66.147.79', 'blog.adurcup.com', '0.0.0.0']
 
 # Application definition
 
@@ -139,3 +139,11 @@ CKEDITOR_CONFIGS = {
 
 # Site ID from Django Admin for sitemap and robots
 SITE_ID = 2
+
+# Mailers settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'news@adurcup.com'
+EMAIL_HOST_PASSWORD = 'newsAdurcup@2017'
