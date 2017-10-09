@@ -69,7 +69,6 @@ def home_amp(request):
 
 
 def unsubscribe(request):
-
     return render(request, 'home/unsubscribe.html')
 
 
@@ -79,6 +78,10 @@ def subscribe(request):
     if len(email):
         subs_obj = Subscribe(email=email)
         subs_obj.save()
+
+        if Unsubscribe.objects.filter(email=email):
+            Unsubscribe.objects.filter(email=email).delete()
+
         messages.success(request, 'Email successfully subscribed.')
     else:
         messages.info(request, 'Enter a valid email address.')

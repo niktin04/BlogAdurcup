@@ -25,9 +25,8 @@ class SendMails(models.Model):
     def save(self, *args, **kwargs):
         super(SendMails, self).save(*args, **kwargs)
 
-        # email_list = Subscribe.objects.all()
-        email_list = ['nitin@adurcup.com', 'niktin04@gmail.com']
-        mailSubject = self.mailer_to_send.primaryBlog.title
+        email_list = Subscribe.objects.all()
+        mail_subject = self.mailer_to_send.primaryBlog.title
 
         html_message = loader.render_to_string(
             'mailers/mailer_mail_update_template.html',
@@ -41,7 +40,7 @@ class SendMails(models.Model):
         connection.open()
 
         for email in email_list:
-            msg = mail.EmailMessage(mailSubject, html_message, 'news@adurcup.com', [email], connection=connection)
+            msg = mail.EmailMessage(mail_subject, html_message, 'news@adurcup.com', [email], connection=connection)
             msg.content_subtype = "html"  # Main content is now text/html
             msg.send()
 
