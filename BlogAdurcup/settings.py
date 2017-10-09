@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'delight.apps.DelightConfig',
     'newsmail.apps.NewsmailConfig',
     'video.apps.VideoConfig',
+    'mailers.apps.MailersConfig',
     'ckeditor',
     'bootstrap_pagination',
     'social_share_templates',

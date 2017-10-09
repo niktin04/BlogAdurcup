@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^delights/', include('delight.urls')),
     url(r'^newsmails/', include('newsmail.urls')),
     url(r'^videos/', include('video.urls')),
+    url(r'^mailers/', include('mailers.urls')),
 
     # AMP URLS
     url(r'^amp/$', home_views.home_amp, name='index_amp'),

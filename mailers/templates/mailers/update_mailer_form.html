@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adurcup Blog Mailer</title>
+</head>
+<body>
+<h4>Prepare template for mailer</h4>
+<h5>Check value at "mailer/check"</h5>
+<form>
+    <h6>Select main blog</h6>
+    <select name="blogs_main">
+        {% for blog in blogs %}
+            <option value="{{ blog.id }}">{{ blog.title }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <h6>Select secondary blog</h6>
+    <select name="blogs_secondary">
+        {% for blog in blogs %}
+            <option value="{{ blog.id }}">{{ blog.title }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <h6>Select tertiary blog</h6>
+    <select name="blogs_tertiary">
+        {% for blog in blogs %}
+            <option value="{{ blog.id }}">{{ blog.title }}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <input type="submit">
+</form>
+</body>
+</html>

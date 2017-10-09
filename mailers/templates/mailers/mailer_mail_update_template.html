@@ -1,0 +1,269 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Adurcup News: {{ blog_data.primaryBlog.title }}</title>
+    <style type="text/css">
+        body {
+            margin: 30px auto;
+            padding: 0;
+            width: 700px;
+            font-family: sans-serif;
+            background-color: #525659;
+        }
+
+        #foot {
+            line-height: 12px;
+        }
+    </style>
+</head>
+<body style="padding: 0;width: 700px;font-family: sans-serif;" bgcolor="#F1F1F1" marginwidth="0" topmargin="0"
+      marginheight="0" offset="0">
+<center>
+    <table bgcolor="white" border="0" cellpadding="0" cellspacing="0" height="100%" width="700px"
+           style="/* padding: 20px 0; *//* background-color: #0c0b0b; */">
+        <tbody>
+        <tr>
+            <td align="center" valign="top">
+                <table align="center" width="700px" border="0" cellpadding="0" cellspacing="0"
+                       style="/* border-left: 1px solid #ebebeb; *//* border-right: 1px solid #ebebeb; *//* border-bottom: 1px solid #ebebeb; */">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <table width="700px" bgcolor="#fff" border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                <tr>
+                                    <td><a href="http://blog.adurcup.com/blogs/{{ blog_data.primaryBlog.id }}/"
+                                           target="_blank"><img
+                                            src="{{ blog_data.primaryBlog.img_url }}"
+                                            style="width: 700px"></a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width="700px" bgcolor="#fff" border="0" cellpadding="0" cellspacing="0"
+                                   style="background-color: #fff;color: #191818;/* padding: 0 20px; */">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="
+                                                width: 620px;
+                                                margin: 20px auto;
+                                                ">
+                                            <h1 style="font-size: 22px;color: #333333;/* text-transform: uppercase; */">{{ blog_data.primaryBlog.title }}</h1>
+                                            <p style="
+                                                   color: #666666;
+                                                   ">
+                                                {% if blog_data.primaryBlog.summary == "#" %}
+                                                    {{ blog_data.primaryBlog.content | truncatewords:70 }}
+                                                {% else %}
+                                                    {{ blog_data.primaryBlog.summary | truncatewords:70 }}
+                                                {% endif %}
+                                            </p>
+                                            <a href="http://blog.adurcup.com/blogs/{{ blog_data.primaryBlog.id }}/"
+                                               style="text-decoration: none; color: #fff">
+                                                <div style="background-color: #ff5a5f; color: #fff; width: 80%; margin: 30px auto; border-radius: 6px; text-transform: uppercase; padding: 10px 0; text-align: center;">
+                                                    Click to read more
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="700px" bgcolor="#e6e6e6" border="0" cellpadding="0"
+                                               cellspacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <table width="700px" bgcolor="#fff" border="0" cellpadding="0"
+                                                           cellspacing="0" style="
+                                                            ">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td style="
+                                                                     text-align: center;
+                                                                     padding-top: 50px;
+                                                                     background-color: #485062;
+                                                                     "><a
+                                                                    href="http://blog.adurcup.com/blogs/{{ blog_data.secondaryBlog.id }}/"
+                                                                    target="_blank"><img
+                                                                    src="{{ blog_data.secondaryBlog.img_url }}"
+                                                                    style="width: 600px;border-top-left-radius: 10px;border-top-right-radius: 10px;"></a>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table width="700px" bgcolor="#fff" border="0" cellpadding="0"
+                                                           cellspacing="0"
+                                                           style="background-color: #485062;color: #191818;padding: 0 50px;padding-bottom: 20px;">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td style="background-color: #fff;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                                                                <div style="width: 550px;margin: 20px auto;">
+                                                                    <h1 style="font-size: 18px;color: #333;">{{ blog_data.secondaryBlog.title }}</h1>
+                                                                    <p style="color: #666666;">
+                                                                        {% if blog_data.secondaryBlog.summary == "#" %}
+                                                                            {{ blog_data.secondaryBlog.content | truncatewords:70 }}
+                                                                        {% else %}
+                                                                            {{ blog_data.secondaryBlog.summary | truncatewords:70 }}
+                                                                        {% endif %}
+                                                                    </p>
+                                                                    <a href="http://blog.adurcup.com/blogs/{{ blog_data.secondaryBlog.id }}/"
+                                                                       style="text-decoration: none; color: #999999">
+                                                                        <div style="color: #999999;text-transform: uppercase;border: 1px solid #ccc;padding: 15px 0;width: 200px;text-align: center;border-radius: 6px;float: right;margin-bottom: 10px;">
+                                                                            read more
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table width="700px" bgcolor="#fff" border="0" cellpadding="0"
+                                                           cellspacing="0" style="
+                                                            ">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td style="
+                                                                     text-align: center;
+                                                                     background-color: #485062;
+                                                                     "><a
+                                                                    href="http://blog.adurcup.com/blogs/{{ blog_data.tertiaryBlog.id }}/"
+                                                                    target="_blank"><img
+                                                                    src="{{ blog_data.tertiaryBlog.img_url }}"
+                                                                    style="width: 600px;border-top-left-radius: 10px;border-top-right-radius: 10px;"></a>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table width="700px" bgcolor="#fff" border="0" cellpadding="0"
+                                                           cellspacing="0"
+                                                           style="background-color: #485062;color: #191818;padding: 0 50px;padding-bottom: 20px;">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td style="background-color: #fff;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                                                                <div style="width: 550px;margin: 20px auto;">
+                                                                    <h1 style="font-size: 18px;color: #333;">{{ blog_data.tertiaryBlog.title }}</h1>
+                                                                    <p style="color: #666666;">
+                                                                        {% if blog_data.tertiaryBlog.summary == "#" %}
+                                                                            {{ blog_data.tertiaryBlog.content | truncatewords:70 }}
+                                                                        {% else %}
+                                                                            {{ blog_data.tertiaryBlog.summary | truncatewords:70 }}
+                                                                        {% endif %}
+                                                                    </p>
+                                                                    <a href="http://blog.adurcup.com/blogs/{{ blog_data.tertiaryBlog.id }}/"
+                                                                       style="text-decoration: none; color: #999999">
+                                                                        <div style="color: #999999;text-transform: uppercase;border: 1px solid #ccc;padding: 15px 0;width: 200px;text-align: center;border-radius: 6px;float: right;margin-bottom: 10px;">
+                                                                            read more
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="700px" bgcolor="#fff" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <table style="/* width: 100%; *//* font-family: arial; *//* font-size: 14px; *//* margin: 50px auto; */">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td style="
+                                                                     width: 700px;
+                                                                     text-align: center;
+                                                                     padding-top: 50px;
+                                                                     "><a href="https://www.adurcup.com"
+                                                                          target="_blank"><img
+                                                                    src="https://gallery.mailchimp.com/f304cea9200164c25328a64b8/images/b7d7b283-585a-4a16-b843-0722f563ddb5.png"
+                                                                    style="
+                                                                     width: 350px;
+                                                                     "></a></td>
+                                                        </tr>
+                                                        <tr style="text-align: center;width: 100%;">
+                                                            <td>
+                                                                <span><a href="https://www.facebook.com/adurcup.care/"
+                                                                         target="_blank"><img
+                                                                        src="https://gallery.mailchimp.com/f304cea9200164c25328a64b8/images/11febde1-d1f9-431c-b6f3-89287debf93c.jpg"
+                                                                        style="width: 30px;"></a></span>
+                                                                <span style="padding: 0 30px;"><a
+                                                                        href="https://twitter.com/adurcup"
+                                                                        target="_blank"><img
+                                                                        src="https://gallery.mailchimp.com/f304cea9200164c25328a64b8/images/77f06f92-6483-4503-bc6e-ac158f5418f6.jpg"
+                                                                        style="width: 30px;;"></a></span>
+                                                                <span><a
+                                                                        href="https://www.linkedin.com/company/adcount-technologies-pvt-ltd"
+                                                                        target="_blank"><img
+                                                                        src="https://gallery.mailchimp.com/f304cea9200164c25328a64b8/images/6a5f476d-1b8f-4b08-9297-2fe44436d130.jpg"
+                                                                        style="width: 30px;"></a></span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: #525659;font-size: 12px;text-align: center;font-family: serif;"><span
+                                                                    style="
+                                                                     font-family: sans-serif;
+                                                                     color: #4d4d4d;
+                                                                     font-size: 10px;
+                                                                     font-weight: 600;
+                                                                     ">Copyright © 2017, Adcount Technologies Private Limited, All Rights Reserved.</span>
+                                                                <br>
+                                                                C-66, 3rd floor, Sector-2, Noida, Uttar Pradesh - 201301
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="700px" bgcolor="#fff" border="0" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td style="font-size: 12px;font-style: italic;padding: 20px;">
+                                                    <p style="color: #969696;">We&nbsp;hope&nbsp;you&nbsp;found&nbsp;this&nbsp;message&nbsp;to&nbsp;be&nbsp;useful. If you wish to not receive update from Adurcup News you can <a href="http://blog.adurcup.com/unsubscribe/">unsubscribe here</a>.&nbsp;</p>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</center>
+</body>
+</html>
