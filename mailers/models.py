@@ -21,6 +21,10 @@ class Mailers(models.Model):
 
 class SendMails(models.Model):
     mailer_to_send = models.ForeignKey(Mailers, on_delete=models.CASCADE)
+    process_start_time = models.DateTimeField(default=datetime.now(), editable=False)
+    process_finish_time = models.DateTimeField(default=datetime.now(), editable=False)
+    exceptions = models.IntegerField(default=0, editable=False)
+    mails_sent = models.IntegerField(default=0, editable=False)
 
     def save(self, *args, **kwargs):
         super(SendMails, self).save(*args, **kwargs)
@@ -37,11 +41,23 @@ class SendMails(models.Model):
 
         # Manual opening of connection to avoid connection instances
         connection = mail.get_connection()
+        SendMails.process_start_time = datetime.now()
         connection.open()
 
-        for email in email_list:
-            msg = mail.EmailMessage(mail_subject, html_message, 'news@adurcup.com', [email], connection=connection)
-            msg.content_subtype = "html"  # Main content is now text/html
-            msg.send()
+        count = 0
+        exceptions = 0
+        while count < len(email_list):
+            try:
+                msg = mail.EmailMessage(mail_subject, html_message, 'news@adurcup.com', [email_list[count]],
+                                        connection=connection)
+                msg.content_subtype = "html"  # Main content is now text/html
+                msg.send()
+                count += 1
+            except:
+                exceptions += 1
+                pass
 
         connection.close()
+        SendMails.process_finish_time = datetime.now()
+        SendMails.mails_sent = count
+        SendMails.exceptions = exceptions
