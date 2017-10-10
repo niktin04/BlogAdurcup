@@ -26,6 +26,9 @@ class SendMails(models.Model):
     exceptions = models.IntegerField(default=0, editable=False)
     mails_sent = models.IntegerField(default=0, editable=False)
 
+    def __str__(self):
+        return str(self.id) + ", B1: " + str(self.mailer_to_send.primaryBlog.id) + ", B2: " + str(self.mailer_to_send.secondaryBlog.id) + ", B3: " + str(self.mailer_to_send.tertiaryBlog.id) + " || Exp: " + str(self.exceptions) + ", Sent: " + str(self.mails_sent) + ", TotalTime: " + str(self.process_finish_time - self.process_start_time)
+
     def save(self, *args, **kwargs):
         super(SendMails, self).save(*args, **kwargs)
 
@@ -41,10 +44,10 @@ class SendMails(models.Model):
 
         # Manual opening of connection to avoid connection instances
         connection = mail.get_connection()
-        SendMails.process_start_time = datetime.now()
+        self.process_start_time = datetime.now()
         connection.open()
 
-        count = 0
+        count = 20
         exceptions = 0
         while count < len(email_list):
             try:
@@ -58,6 +61,8 @@ class SendMails(models.Model):
                 pass
 
         connection.close()
-        SendMails.process_finish_time = datetime.now()
-        SendMails.mails_sent = count
-        SendMails.exceptions = exceptions
+        self.process_finish_time = datetime.now()
+        self.mails_sent = count
+        self.exceptions = exceptions
+
+	super(SendMails, self).save(*args, **kwargs)
