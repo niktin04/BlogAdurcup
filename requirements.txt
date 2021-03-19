@@ -18,7 +18,7 @@ django-embed-video==1.1.2
 django-js-asset==0.1.1
 django-robots==3.0
 django-social-share==1.1.2
-djangorestframework==3.6.3
+djangorestframework==3.11.2
 entrypoints==0.2.2
 gunicorn==19.7.1
 html5lib==0.9999999
